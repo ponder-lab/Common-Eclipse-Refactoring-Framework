@@ -1,7 +1,7 @@
 /**
  * 
  */
-package edu.ohio_state.khatchad.refactoring;
+package edu.cuny.citytech.refactoring.common;
 
 import java.util.Map;
 

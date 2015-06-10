@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Common Refactoring Framework
 Bundle-SymbolicName: edu.cuny.citytech.refactoring.common
 Bundle-Version: 1.0.0
-Export-Package: edu.ohio_state.khatchad.refactoring;uses:="org.osgi.framework,org.eclipse.ltk.core.refactoring,org.eclipse.ui.plugin"
+Export-Package: edu.cuny.citytech.refactoring.common;uses:="org.osgi.framework,org.eclipse.ltk.core.refactoring,org.eclipse.ui.plugin"
 Bundle-Vendor: City University of New York
 Require-Bundle: org.eclipse.ltk.core.refactoring,
  org.eclipse.equinox.registry,
