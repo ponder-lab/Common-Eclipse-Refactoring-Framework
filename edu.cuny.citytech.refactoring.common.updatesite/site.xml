@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description name="Common Refactoring Framework Update Site" url="https://raw.githubusercontent.com/khatchad/edu.cuny.citytech.refactoring.common/master/edu.cuny.citytech.refactoring.common.updatesite">
+      A bootstrap framework for new refactoring tool plugins.
+   </description>
+   <feature url="features/edu.cuny.citytech.refactoring.common.feature_1.0.0.201506232142.jar" id="edu.cuny.citytech.refactoring.common.feature" version="1.0.0.201506232142">
+      <category name="edu.cuny.citytech.refactoring.category"/>
+   </feature>
+   <category-def name="edu.cuny.citytech.refactoring.category" label="Common Refactoring Framework">
+      <description>
+         A framework with some common functionality for refactoring tool development.
+      </description>
+   </category-def>
+</site>
