@@ -2,9 +2,9 @@
 <feature
       id="edu.cuny.citytech.refactoring.common.feature"
       label="Common Refactoring Framework"
-      version="1.0.0.qualifier"
+      version="1.1.0.qualifier"
       provider-name="New York City College of Technology, City University of New York"
-      plugin="edu.cuny.citytech.refactoring.common">
+      plugin="edu.cuny.citytech.refactoring.common.core">
 
    <description url="http://www.example.com/description">
       A framework to bootstrap refactoring tool plugin development.
@@ -89,7 +89,14 @@ This Agreement is governed by the laws of the State of New York and the intellec
    </requires>
 
    <plugin
-         id="edu.cuny.citytech.refactoring.common"
+         id="edu.cuny.citytech.refactoring.common.core"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.cuny.citytech.refactoring.common.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"

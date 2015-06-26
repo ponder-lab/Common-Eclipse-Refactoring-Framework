@@ -1,7 +1,7 @@
 /**
  * 
  */
-package edu.cuny.citytech.refactoring.common;
+package edu.cuny.citytech.refactoring.common.core;
 
 import java.util.Map;
 
