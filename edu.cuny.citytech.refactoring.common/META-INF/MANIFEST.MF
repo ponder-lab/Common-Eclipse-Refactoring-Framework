@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Common Refactoring Framework
 Bundle-SymbolicName: edu.cuny.citytech.refactoring.common.ui
 Bundle-Version: 1.1.0.qualifier
-Export-Package: edu.cuny.citytech.refactoring.common
+Export-Package: edu.cuny.citytech.refactoring.common.ui
 Bundle-Vendor: New York City College of Technology, City University of New York
 Require-Bundle: org.eclipse.ltk.core.refactoring,
  org.eclipse.equinox.registry,

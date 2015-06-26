@@ -1,7 +1,7 @@
 /**
  * 
  */
-package edu.cuny.citytech.refactoring.common;
+package edu.cuny.citytech.refactoring.common.ui;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
