@@ -4,4 +4,7 @@ Bundle-Name: Common Refactoring Test Framework
 Bundle-SymbolicName: edu.cuny.citytech.refactoring.common.test
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: new york city college of technology
+Fragment-Host: org.eclipse.jdt.ui
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: org.eclipse.jdt.ui.tests.refactoring,
+ org.junit
