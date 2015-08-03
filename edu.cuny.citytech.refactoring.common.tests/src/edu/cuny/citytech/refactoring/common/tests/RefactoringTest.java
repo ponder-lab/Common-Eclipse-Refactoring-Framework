@@ -152,4 +152,8 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 		String actual = cu.getSource();
 		assertEqualLines(expected, actual);
 	}
+
+	public void testPlainMethod() throws Exception {
+		helperPass(new String[] { "m" }, new String[][] { new String[0] });
+	}
 }
