@@ -1,4 +1,4 @@
-package edu.cuny.citytech.refactoring.common.test;
+package edu.cuny.citytech.refactoring.common.tests;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
