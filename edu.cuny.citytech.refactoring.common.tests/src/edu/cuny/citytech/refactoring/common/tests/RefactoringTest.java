@@ -132,6 +132,14 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 		helperFail("A", null, null, null, methodNames, signatures);
 	}
 
+	/**
+	 * Check for failed preconditions for the case where there is no input.
+	 * @throws Exception
+	 */
+	protected void helperFail() throws Exception {
+		helperFail("A", null, null);
+	}
+
 	protected void helperPass(String[] methodNames, String[][] signatures) throws Exception {
 		ICompilationUnit cu = createCUfromTestFile(getPackageP(), "A");
 		IType type = getType(cu, "A");
