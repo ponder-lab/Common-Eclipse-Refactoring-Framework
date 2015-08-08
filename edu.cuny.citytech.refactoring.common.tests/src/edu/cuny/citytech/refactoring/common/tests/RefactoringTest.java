@@ -11,8 +11,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IMethod;
+import org.eclipse.jdt.core.IPackageFragment;
 import org.eclipse.jdt.core.IType;
-
 import org.eclipse.ltk.core.refactoring.Refactoring;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 
@@ -70,6 +70,19 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 		Path absolutePath = path.toAbsolutePath();
 		byte[] encoded = Files.readAllBytes(absolutePath);
 		return new String(encoded, Charset.defaultCharset());
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.jdt.ui.tests.refactoring.RefactoringTest#createCUfromTestFile(org.eclipse.jdt.core.IPackageFragment, java.lang.String)
+	 */
+	@Override
+	protected ICompilationUnit createCUfromTestFile(IPackageFragment pack, String cuName) throws Exception {
+		ICompilationUnit unit = super.createCUfromTestFile(pack, cuName);
+
+		if (!unit.isStructureKnown())
+			throw new IllegalArgumentException(cuName + " has compiler errors.");
+		else
+			return unit;
 	}
 
 	private void helperFail(String typeName, String outerMethodName, String[] outerSignature, String innerTypeName,
