@@ -2,7 +2,7 @@
 <feature
       id="edu.cuny.citytech.refactoring.common.feature"
       label="Common Refactoring Framework"
-      version="1.2.0.qualifier"
+      version="1.3.0.qualifier"
       provider-name="New York City College of Technology, City University of New York"
       plugin="edu.cuny.citytech.refactoring.common.core">
 
