@@ -78,9 +78,9 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 	@Override
 	protected ICompilationUnit createCUfromTestFile(IPackageFragment pack, String cuName) throws Exception {
 		ICompilationUnit unit = super.createCUfromTestFile(pack, cuName);
-
+		
 		if (!unit.isStructureKnown())
-			throw new IllegalArgumentException(cuName + " has compiler errors.");
+			throw new IllegalArgumentException(cuName + " has structural errors.");
 		else
 			return unit;
 	}
