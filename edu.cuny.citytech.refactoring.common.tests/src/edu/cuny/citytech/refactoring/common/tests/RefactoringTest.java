@@ -34,8 +34,8 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 		assertTrue("Precondition was supposed to fail.", !initialStatus.isOK() || !finalStatus.isOK());
 	}
 
-	protected void assertFailedPrecondition(IMethod... methods) throws CoreException {
-		Refactoring refactoring = getRefactoring(null, methods);
+	protected void assertFailedPrecondition(ICompilationUnit cu, IMethod... methods) throws CoreException {
+		Refactoring refactoring = getRefactoring(cu, methods);
 	
 		RefactoringStatus initialStatus = refactoring.checkInitialConditions(new NullProgressMonitor());
 		getLogger().info("Initial status: " + initialStatus);
@@ -105,7 +105,7 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 		}
 	
 		IMethod[] methods = getMethods(type, methodNames, signatures);
-		assertFailedPrecondition(methods);
+		assertFailedPrecondition(cu, methods);
 	}
 
 	protected void helperFail(String outerMethodName, String[] outerSignature, String innerTypeName, String[] methodNames,
