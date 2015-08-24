@@ -5,7 +5,10 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Hashtable;
 import java.util.logging.Logger;
+
+import javax.swing.JList;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -13,7 +16,11 @@ import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IMethod;
 import org.eclipse.jdt.core.IPackageFragment;
 import org.eclipse.jdt.core.IType;
+import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
+import org.eclipse.jdt.core.dom.AST;
+import org.eclipse.jdt.core.dom.ASTNode;
+import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.ltk.core.refactoring.Refactoring;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 
@@ -172,7 +179,18 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 		assertTrue("Precondition was supposed to pass.", initialStatus.isOK() && finalStatus.isOK());
 		performChange(refactoring, false);
 	
-		String expected = getFileContents(getOutputTestFileName("A"));
+		String outputTestFileName = getOutputTestFileName("A");
+		String expected = getFileContents(outputTestFileName);
+
+		ASTParser parser = ASTParser.newParser(AST.JLS8);
+		char[] expectedCharArray = expected.toCharArray();
+		parser.setSource(expectedCharArray);
+		parser.setKind(ASTParser.K_COMPILATION_UNIT);
+		
+		Hashtable options = JavaCore.getDefaultOptions();
+		
+		ASTNode createAST = parser.createAST(new NullProgressMonitor());
+
 		String actual = cu.getSource();
 		assertEqualLines(expected, actual);
 	}
