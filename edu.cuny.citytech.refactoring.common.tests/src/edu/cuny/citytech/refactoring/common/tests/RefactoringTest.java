@@ -49,16 +49,23 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 		assertFailedPrecondition(initialStatus, finalStatus);
 	}
 
-	protected abstract Logger getLogger(); // TODO: Should use built-in Eclipse logger.
+	protected abstract Logger getLogger(); // TODO: Should use built-in Eclipse
+											// logger.
 
 	/**
 	 * Returns the refactoring to be tested.
-	 * @param methods The methods to refactor.
-	 * @param cu The compilation unit being tested. Can be null.
+	 * 
+	 * @param methods
+	 *            The methods to refactor.
+	 * @param cu
+	 *            The compilation unit being tested. Can be null.
 	 * @return The refactoring to be tested.
 	 * @throws JavaModelException
 	 */
-	protected abstract Refactoring getRefactoring(IMethod... methods) throws JavaModelException; 	// TODO: Should use createRefactoring().
+	protected abstract Refactoring getRefactoring(IMethod... methods) throws JavaModelException; // TODO:
+																									// Should
+																									// use
+																									// createRefactoring().
 
 	/*
 	 * (non-Javadoc)
@@ -78,8 +85,12 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 		return new String(encoded, Charset.defaultCharset());
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.jdt.ui.tests.refactoring.RefactoringTest#createCUfromTestFile(org.eclipse.jdt.core.IPackageFragment, java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.jdt.ui.tests.refactoring.RefactoringTest#createCUfromTestFile
+	 * (org.eclipse.jdt.core.IPackageFragment, java.lang.String)
 	 */
 	@Override
 	protected ICompilationUnit createCUfromTestFile(IPackageFragment pack, String cuName) throws Exception {
@@ -111,8 +122,8 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 		assertFailedPrecondition(methods);
 	}
 
-	protected void helperFail(String outerMethodName, String[] outerSignature, String innerTypeName, String[] methodNames,
-			String[][] signatures) throws Exception {
+	protected void helperFail(String outerMethodName, String[] outerSignature, String innerTypeName,
+			String[] methodNames, String[][] signatures) throws Exception {
 		helperFail("A", outerMethodName, outerSignature, innerTypeName, methodNames, signatures);
 	}
 
@@ -153,6 +164,7 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 
 	/**
 	 * Check for failed preconditions for the case where there is no input.
+	 * 
 	 * @throws Exception
 	 */
 	protected void helperFail() throws Exception {
