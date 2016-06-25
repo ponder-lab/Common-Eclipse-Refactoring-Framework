@@ -148,6 +148,10 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 	protected void helperFail(String innerTypeName, String[] methodNames, String[][] signatures) throws Exception {
 		helperFail("A", null, null, innerTypeName, methodNames, signatures);
 	}
+	
+	protected void helperPass(String innerTypeName, String[] methodNames, String[][] signatures) throws Exception {
+		helperPass("A", null, null, innerTypeName, methodNames, signatures);
+	}
 
 	/**
 	 * Check for failed precondition for a simple case.
@@ -175,7 +179,11 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 		ICompilationUnit cu = createCUfromTestFile(getPackageP(), "A");
 		IType type = getType(cu, "A");
 		IMethod[] methods = getMethods(type, methodNames, signatures);
+		helperPass(cu, methods);
+	}
 
+	private void helperPass(ICompilationUnit cu, IMethod[] methods)
+			throws JavaModelException, CoreException, Exception, IOException {
 		Refactoring refactoring = getRefactoring(methods);
 
 		RefactoringStatus initialStatus = refactoring.checkInitialConditions(new NullProgressMonitor());
@@ -190,6 +198,26 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 		String expected = getFileContents(getOutputTestFileName("A"));
 		String actual = cu.getSource();
 		assertEqualLines(expected, actual);
+	}
+	
+	private void helperPass(String typeName, String outerMethodName, String[] outerSignature, String innerTypeName,
+			String[] methodNames, String[][] signatures) throws Exception {
+		ICompilationUnit cu = createCUfromTestFile(getPackageP(), typeName);
+		IType type = getType(cu, typeName);
+
+		if (outerMethodName != null) {
+			IMethod method = type.getMethod(outerMethodName, outerSignature);
+			if (innerTypeName != null) {
+				type = method.getType(innerTypeName, 1); // get the local type
+			} else {
+				type = method.getType("", 1); // get the anonymous type.
+			}
+		} else if (innerTypeName != null) {
+			type = type.getType(innerTypeName); // get the member type.
+		}
+
+		IMethod[] methods = getMethods(type, methodNames, signatures);
+		helperPass(cu, methods);
 	}
 
 	/**
