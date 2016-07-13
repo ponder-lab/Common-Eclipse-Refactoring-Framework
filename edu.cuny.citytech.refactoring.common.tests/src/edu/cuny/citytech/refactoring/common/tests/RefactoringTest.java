@@ -1,14 +1,19 @@
 package edu.cuny.citytech.refactoring.common.tests;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.attribute.FileAttribute;
 import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.logging.Logger;
+
+import javax.tools.JavaCompiler;
+import javax.tools.ToolProvider;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -222,13 +227,22 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 	}
 
 	protected void helperPass(String[] methodNames, String[][] signatures) throws Exception {
+		helperPass(methodNames, signatures, true);
+	}
+
+	protected void helperPass(String[] methodNames, String[][] signatures, boolean testCompilation) throws Exception {
 		ICompilationUnit cu = createCUfromTestFile(getPackageP(), "A");
 		IType type = getType(cu, "A");
 		IMethod[] methods = getMethods(type, methodNames, signatures);
-		helperPass(cu, methods);
+		helperPass(cu, methods, testCompilation);
 	}
 
 	private void helperPass(ICompilationUnit cu, IMethod[] methods)
+			throws JavaModelException, CoreException, Exception, IOException {
+		helperPass(cu, methods, true);
+	}
+
+	private void helperPass(ICompilationUnit cu, IMethod[] methods, boolean testCompilation)
 			throws JavaModelException, CoreException, Exception, IOException {
 		Refactoring refactoring = getRefactoring(methods);
 
@@ -244,11 +258,26 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 		String outputTestFileName = getOutputTestFileName("A");
 		String actual = cu.getSource();
 
+		if (testCompilation)
+			assertTrue("Actual output should compile.", compiles(actual));
+
 		if (this.replaceExpectedWithActual)
 			setFileContents(outputTestFileName, actual);
 
 		String expected = getFileContents(outputTestFileName);
 		assertEqualLines(expected, actual);
+	}
+
+	private boolean compiles(String source) throws IOException {
+		// Save source in .java file.
+		Path root = Files.createTempDirectory(null);
+		File sourceFile = new File(root.toFile(), "p/A.java");
+		sourceFile.getParentFile().mkdirs();
+		Files.write(sourceFile.toPath(), source.getBytes());
+
+		// Compile source file.
+		JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
+		return compiler.run(null, null, null, sourceFile.getPath()) == 0;
 	}
 
 	private void helperPass(String typeName, String outerMethodName, String[] outerSignature, String innerTypeName,
@@ -297,6 +326,7 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 
 		String outputTestFileName = getOutputTestFileName("A");
 		String actual = cu.getSource();
+		assertTrue("Actual output should compile.", compiles(actual));
 
 		if (this.replaceExpectedWithActual)
 			setFileContents(outputTestFileName, actual);
@@ -332,6 +362,7 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 
 		String outputTestFileName = getOutputTestFileName("A");
 		String actual = cu.getSource();
+		assertTrue("Actual output should compile.", compiles(actual));
 
 		if (this.replaceExpectedWithActual)
 			setFileContents(outputTestFileName, actual);
@@ -370,6 +401,7 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 
 		String outputTestFileName = getOutputTestFileName("A");
 		String actual = cu.getSource();
+		assertTrue("Actual output should compile.", compiles(actual));
 
 		if (this.replaceExpectedWithActual)
 			setFileContents(outputTestFileName, actual);
