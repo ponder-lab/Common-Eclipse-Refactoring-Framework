@@ -23,12 +23,34 @@ import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 @SuppressWarnings("restriction")
 public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactoring.RefactoringTest {
 
+	private static final String REPLACE_EXPECTED_WITH_ACTUAL_KEY = "edu.cuny.citytech.refactoring.common.tests.replaceExpectedWithActual";
+
 	/**
 	 * The name of the directory containing resources under the project
 	 * directory.
 	 */
 	private static final String RESOURCE_PATH = "resources";
 
+	/**
+	 * True if the expected output should be replaced with the actual output.
+	 * Useful to creating new or updated test data and false otherwise.
+	 */
+	private boolean replaceExpectedWithActual;
+
+	/**
+	 * Creates a new {@link RefactoringTest}.
+	 * 
+	 * @param name
+	 *            The name of the test.
+	 * @param replaceExpectedWithActual
+	 *            True if the expected output should be replaced with the actual
+	 *            output.
+	 * @see org.eclipse.jdt.ui.tests.refactoring.RefactoringTest
+	 */
+	public RefactoringTest(String name, boolean replaceExpectedWithActual) {
+		super(name);
+		this.replaceExpectedWithActual = replaceExpectedWithActual;
+	}
 
 	/**
 	 * Creates a new {@link RefactoringTest}.
@@ -39,6 +61,12 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 	 */
 	public RefactoringTest(String name) {
 		super(name);
+
+		String replaceProperty = System.getenv(REPLACE_EXPECTED_WITH_ACTUAL_KEY);
+
+		if (replaceProperty != null)
+			this.replaceExpectedWithActual = Boolean.valueOf(replaceProperty);
+
 	}
 
 	private static void assertFailedPrecondition(RefactoringStatus initialStatus, RefactoringStatus finalStatus) {
@@ -96,6 +124,11 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 		Path path = Paths.get(RESOURCE_PATH, fileName);
 		Path absolutePath = path.toAbsolutePath();
 		return absolutePath;
+	}
+
+	public void setFileContents(String fileName, String contents) throws IOException {
+		Path absolutePath = getAbsolutionPath(fileName);
+		Files.write(absolutePath, contents.getBytes());
 	}
 
 	/*
@@ -208,8 +241,13 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 		assertTrue("Precondition was supposed to pass.", initialStatus.isOK() && finalStatus.isOK());
 		performChange(refactoring, false);
 
-		String expected = getFileContents(getOutputTestFileName("A"));
+		String outputTestFileName = getOutputTestFileName("A");
 		String actual = cu.getSource();
+
+		if (this.replaceExpectedWithActual)
+			setFileContents(outputTestFileName, actual);
+
+		String expected = getFileContents(outputTestFileName);
 		assertEqualLines(expected, actual);
 	}
 	
@@ -257,8 +295,13 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 		assertTrue("Precondition was supposed to pass.", initialStatus.isOK() && finalStatus.isOK());
 		performChange(refactoring, false);
 
-		String expected = getFileContents(getOutputTestFileName("A"));
+		String outputTestFileName = getOutputTestFileName("A");
 		String actual = cu.getSource();
+		
+		if (this.replaceExpectedWithActual)
+			setFileContents(outputTestFileName, actual);
+		
+		String expected = getFileContents(outputTestFileName);
 		assertEqualLines(expected, actual);
 	}
 
@@ -287,8 +330,13 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 				!initialStatus.hasFatalError() && !finalStatus.hasFatalError());
 		performChange(refactoring, false);
 
-		String expected = getFileContents(getOutputTestFileName("A"));
+		String outputTestFileName = getOutputTestFileName("A");
 		String actual = cu.getSource();
+		
+		if (this.replaceExpectedWithActual)
+			setFileContents(outputTestFileName, actual);
+		
+		String expected = getFileContents(outputTestFileName);
 		assertEqualLines(expected, actual);
 	}
 
@@ -320,8 +368,13 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 				!initialStatus.hasFatalError() && !finalStatus.hasFatalError());
 		performChange(refactoring, false);
 
-		String expected = getFileContents(getOutputTestFileName("A"));
+		String outputTestFileName = getOutputTestFileName("A");
 		String actual = cu.getSource();
+		
+		if (this.replaceExpectedWithActual)
+			setFileContents(outputTestFileName, actual);
+		
+		String expected = getFileContents(outputTestFileName);
 		assertEqualLines(expected, actual);
 	}
 
