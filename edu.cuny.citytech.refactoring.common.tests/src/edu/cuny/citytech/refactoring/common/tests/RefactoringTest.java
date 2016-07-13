@@ -194,7 +194,7 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 	protected void helperFail(String innerTypeName, String[] methodNames, String[][] signatures) throws Exception {
 		helperFail("A", null, null, innerTypeName, methodNames, signatures);
 	}
-	
+
 	protected void helperPass(String innerTypeName, String[] methodNames, String[][] signatures) throws Exception {
 		helperPass("A", null, null, innerTypeName, methodNames, signatures);
 	}
@@ -250,7 +250,7 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 		String expected = getFileContents(outputTestFileName);
 		assertEqualLines(expected, actual);
 	}
-	
+
 	private void helperPass(String typeName, String outerMethodName, String[] outerSignature, String innerTypeName,
 			String[] methodNames, String[][] signatures) throws Exception {
 		ICompilationUnit cu = createCUfromTestFile(getPackageP(), typeName);
@@ -297,10 +297,10 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 
 		String outputTestFileName = getOutputTestFileName("A");
 		String actual = cu.getSource();
-		
+
 		if (this.replaceExpectedWithActual)
 			setFileContents(outputTestFileName, actual);
-		
+
 		String expected = getFileContents(outputTestFileName);
 		assertEqualLines(expected, actual);
 	}
@@ -332,10 +332,10 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 
 		String outputTestFileName = getOutputTestFileName("A");
 		String actual = cu.getSource();
-		
+
 		if (this.replaceExpectedWithActual)
 			setFileContents(outputTestFileName, actual);
-		
+
 		String expected = getFileContents(outputTestFileName);
 		assertEqualLines(expected, actual);
 	}
@@ -370,10 +370,10 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 
 		String outputTestFileName = getOutputTestFileName("A");
 		String actual = cu.getSource();
-		
+
 		if (this.replaceExpectedWithActual)
 			setFileContents(outputTestFileName, actual);
-		
+
 		String expected = getFileContents(outputTestFileName);
 		assertEqualLines(expected, actual);
 	}
