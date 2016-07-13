@@ -29,6 +29,14 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 	 */
 	private static final String RESOURCE_PATH = "resources";
 
+
+	/**
+	 * Creates a new {@link RefactoringTest}.
+	 * 
+	 * @param name
+	 *            The name of the test.
+	 * @see org.eclipse.jdt.ui.tests.refactoring.RefactoringTest
+	 */
 	public RefactoringTest(String name) {
 		super(name);
 	}
