@@ -87,10 +87,15 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 	 */
 	@Override
 	public String getFileContents(String fileName) throws IOException {
-		Path path = Paths.get(RESOURCE_PATH, fileName);
-		Path absolutePath = path.toAbsolutePath();
+		Path absolutePath = getAbsolutionPath(fileName);
 		byte[] encoded = Files.readAllBytes(absolutePath);
 		return new String(encoded, Charset.defaultCharset());
+	}
+
+	private Path getAbsolutionPath(String fileName) {
+		Path path = Paths.get(RESOURCE_PATH, fileName);
+		Path absolutePath = path.toAbsolutePath();
+		return absolutePath;
 	}
 
 	/*
