@@ -268,7 +268,7 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 		assertEqualLines(expected, actual);
 	}
 
-	private boolean compiles(String source) throws IOException {
+	private static boolean compiles(String source) throws IOException {
 		// Save source in .java file.
 		Path root = Files.createTempDirectory(null);
 		File sourceFile = new File(root.toFile(), "p/A.java");
