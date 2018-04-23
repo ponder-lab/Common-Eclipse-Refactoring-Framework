@@ -3,15 +3,15 @@
       id="edu.cuny.citytech.refactoring.common.feature"
       label="Common Refactoring Framework"
       version="1.8.0.qualifier"
-      provider-name="New York City College of Technology, City University of New York"
+      provider-name="Hunter College, City University of New York"
       plugin="edu.cuny.citytech.refactoring.common.core">
 
-   <description url="http://www.example.com/description">
+   <description>
       A framework to bootstrap refactoring tool plugin development.
    </description>
 
    <copyright>
-      Copyright 2016 Raffi Khatchadourian. All rights reserved.
+      Copyright 2018 Raffi Khatchadourian. All rights reserved.
    </copyright>
 
    <license url="">
@@ -77,7 +77,7 @@ This Agreement is governed by the laws of the State of New York and the intellec
    </license>
 
    <url>
-      <update label="Common Refactoring Framework Update Site" url="https://raw.githubusercontent.com/ponder-lab/Common-Eclipse-Refactoring-Framework/master/edu.cuny.citytech.refactoring.common.updatesite"/>
+      <update label="Common Refactoring Framework Update Site" url="https://raw.githubusercontent.com/ponder-lab/Common-Eclipse-Java-Refactoring-Framework/master/edu.cuny.citytech.refactoring.common.updatesite"/>
    </url>
 
    <requires>
