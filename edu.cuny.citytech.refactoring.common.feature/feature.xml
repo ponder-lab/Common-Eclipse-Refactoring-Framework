@@ -2,7 +2,7 @@
 <feature
       id="edu.cuny.citytech.refactoring.common.feature"
       label="Common Refactoring Framework"
-      version="1.9.0.qualifier"
+      version="1.10.0.qualifier"
       provider-name="Hunter College, City University of New York"
       plugin="edu.cuny.citytech.refactoring.common.core">
 
@@ -86,9 +86,11 @@ This Agreement is governed by the laws of the State of New York and the intellec
       <import plugin="org.eclipse.ui.workbench"/>
       <import plugin="org.eclipse.osgi"/>
       <import plugin="org.eclipse.core.runtime" version="3.11.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jdt.core"/>
+      <import plugin="org.eclipse.jface" version="3.13.2" match="greaterOrEqual"/>
       <import plugin="org.eclipse.jdt.ui.tests.refactoring"/>
       <import plugin="org.junit"/>
-      <import plugin="org.eclipse.jdt.core"/>
+      <import plugin="org.eclipse.jdt.ui" version="3.13.100" match="greaterOrEqual"/>
    </requires>
 
    <plugin
