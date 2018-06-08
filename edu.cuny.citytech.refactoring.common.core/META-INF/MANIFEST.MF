@@ -3,11 +3,18 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: edu.cuny.citytech.refactoring.common.core
 Bundle-Version: 1.1.0.qualifier
-Export-Package: edu.cuny.citytech.refactoring.common.core
+Export-Package: edu.cuny.citytech.refactoring.common.core,
+ edu.cuny.citytech.refactoring.common.core.refactorings
 Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.ltk.core.refactoring,
  org.eclipse.equinox.registry,
  org.eclipse.ui.workbench,
  org.eclipse.osgi,
- org.eclipse.core.runtime
+ org.eclipse.core.runtime,
+ org.eclipse.jdt.ui,
+ org.eclipse.jdt.core.manipulation
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Import-Package: org.eclipse.jdt.core,
+ org.eclipse.jdt.core.dom,
+ org.eclipse.jdt.internal.corext.codemanipulation,
+ org.eclipse.jdt.internal.corext.refactoring.structure
