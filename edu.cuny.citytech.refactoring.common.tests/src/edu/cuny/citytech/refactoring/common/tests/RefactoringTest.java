@@ -33,7 +33,7 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 	 * The name of the directory containing resources under the project
 	 * directory.
 	 */
-	protected static final String RESOURCE_PATH = "resources";
+	private static final String RESOURCE_PATH = "resources";
 
 	/**
 	 * True if the expected output should be replaced with the actual output.
