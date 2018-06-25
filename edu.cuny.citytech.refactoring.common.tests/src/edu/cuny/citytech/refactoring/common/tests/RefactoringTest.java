@@ -6,7 +6,6 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.attribute.FileAttribute;
 import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -151,6 +150,23 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 			throw new IllegalArgumentException(cuName + " has structural errors.");
 		else
 			return unit;
+	}
+
+	/**
+	 * Compile the test case
+	 */
+	protected static boolean compiles(String source, Path path) throws IOException {
+		// Save source in .java file.
+		File sourceFile = new File(path.toFile(), "bin/p/A.java");
+		sourceFile.getParentFile().mkdirs();
+		Files.write(sourceFile.toPath(), source.getBytes());
+
+		// Compile source file.
+		JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
+		boolean compileSuccess = compiler.run(null, null, null, sourceFile.getPath()) == 0;
+
+		sourceFile.delete();
+		return compileSuccess;
 	}
 
 	private void helperFail(String typeName, String outerMethodName, String[] outerSignature, String innerTypeName,
