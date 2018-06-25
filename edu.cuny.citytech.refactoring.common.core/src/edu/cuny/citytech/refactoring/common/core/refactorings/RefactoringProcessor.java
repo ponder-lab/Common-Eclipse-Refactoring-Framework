@@ -19,18 +19,17 @@ import org.eclipse.jdt.internal.corext.refactoring.util.RefactoringASTParser;
 import org.eclipse.jdt.internal.corext.refactoring.util.TextEditBasedChangeManager;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 import org.eclipse.ltk.core.refactoring.participants.RefactoringParticipant;
-import org.eclipse.ltk.core.refactoring.participants.RefactoringProcessor;
 import org.eclipse.ltk.core.refactoring.participants.SharableParticipants;
 
 @SuppressWarnings("restriction")
-public abstract class CommonRefactoringProcessor extends RefactoringProcessor {
+public abstract class RefactoringProcessor extends org.eclipse.ltk.core.refactoring.participants.RefactoringProcessor {
 
 	private IJavaProject[] javaProjects;
 	private CodeGenerationSettings settings;
 	private Map<ITypeRoot, CompilationUnit> typeRootToCompilationUnitMap = new HashMap<>();
 	private Map<ICompilationUnit, CompilationUnitRewrite> compilationUnitToCompilationUnitRewriteMap = new HashMap<>();
 
-	public CommonRefactoringProcessor(IJavaProject[] javaProjects, final CodeGenerationSettings settings,
+	public RefactoringProcessor(IJavaProject[] javaProjects, final CodeGenerationSettings settings,
 			Optional<IProgressMonitor> monitor) {
 		try {
 			this.javaProjects = javaProjects;
