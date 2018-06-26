@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="edu.cuny.citytech.refactoring.common.core" version="2">
+    <resource path="src/edu/cuny/citytech/refactoring/common/core/RefactoringProcessor.java" type="edu.cuny.citytech.refactoring.common.core.RefactoringProcessor">
+        <filter comment="We are using internal API." id="627060751">
+            <message_arguments>
+                <message_argument value="CodeGenerationSettings"/>
+                <message_argument value="RefactoringProcessor"/>
+                <message_argument value="settings"/>
+            </message_arguments>
+        </filter>
+        <filter comment="We are using internal API." id="643842064">
+            <message_arguments>
+                <message_argument value="CompilationUnitRewrite"/>
+                <message_argument value="RefactoringProcessor"/>
+                <message_argument value="getCompilationUnitRewrite(ICompilationUnit, CompilationUnit)"/>
+            </message_arguments>
+        </filter>
+        <filter comment="We are using internal API." id="643846161">
+            <message_arguments>
+                <message_argument value="CompilationUnitRewrite"/>
+                <message_argument value="RefactoringProcessor"/>
+                <message_argument value="manageCompilationUnit(TextEditBasedChangeManager, CompilationUnitRewrite, Optional&lt;IProgressMonitor&gt;)"/>
+            </message_arguments>
+        </filter>
+        <filter comment="We are using internal API." id="643846161">
+            <message_arguments>
+                <message_argument value="TextEditBasedChangeManager"/>
+                <message_argument value="RefactoringProcessor"/>
+                <message_argument value="manageCompilationUnit(TextEditBasedChangeManager, CompilationUnitRewrite, Optional&lt;IProgressMonitor&gt;)"/>
+            </message_arguments>
+        </filter>
+        <filter comment="We are using internal API." id="643850349">
+            <message_arguments>
+                <message_argument value="CodeGenerationSettings"/>
+                <message_argument value="RefactoringProcessor"/>
+                <message_argument value="RefactoringProcessor(CodeGenerationSettings)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>
