@@ -3,8 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: edu.cuny.citytech.refactoring.common.core
 Bundle-Version: 1.2.0.qualifier
-Export-Package: edu.cuny.citytech.refactoring.common.core,
- edu.cuny.citytech.refactoring.common.core.refactorings
+Export-Package: edu.cuny.citytech.refactoring.common.core
 Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.ltk.core.refactoring,
  org.eclipse.equinox.registry,
@@ -18,3 +17,4 @@ Import-Package: org.eclipse.jdt.core,
  org.eclipse.jdt.core.dom,
  org.eclipse.jdt.internal.corext.codemanipulation,
  org.eclipse.jdt.internal.corext.refactoring.structure
+Automatic-Module-Name: edu.cuny.citytech.refactoring.common.core
