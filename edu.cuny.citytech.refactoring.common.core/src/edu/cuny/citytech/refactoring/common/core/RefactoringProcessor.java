@@ -1,4 +1,4 @@
-package edu.cuny.citytech.refactoring.common.core.refactorings;
+package edu.cuny.citytech.refactoring.common.core;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,7 +9,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.jdt.core.ICompilationUnit;
-import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.ITypeRoot;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.refactoring.CompilationUnitChange;
@@ -18,47 +17,30 @@ import org.eclipse.jdt.internal.corext.refactoring.structure.CompilationUnitRewr
 import org.eclipse.jdt.internal.corext.refactoring.util.RefactoringASTParser;
 import org.eclipse.jdt.internal.corext.refactoring.util.TextEditBasedChangeManager;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
-import org.eclipse.ltk.core.refactoring.participants.RefactoringParticipant;
-import org.eclipse.ltk.core.refactoring.participants.SharableParticipants;
 
 @SuppressWarnings("restriction")
 public abstract class RefactoringProcessor extends org.eclipse.ltk.core.refactoring.participants.RefactoringProcessor {
 
-	private IJavaProject[] javaProjects;
-	private CodeGenerationSettings settings;
-	private Map<ITypeRoot, CompilationUnit> typeRootToCompilationUnitMap = new HashMap<>();
-	private Map<ICompilationUnit, CompilationUnitRewrite> compilationUnitToCompilationUnitRewriteMap = new HashMap<>();
+	protected Map<ICompilationUnit, CompilationUnitRewrite> compilationUnitToCompilationUnitRewriteMap = new HashMap<>();
 
-	public RefactoringProcessor(IJavaProject[] javaProjects, final CodeGenerationSettings settings,
-			Optional<IProgressMonitor> monitor) {
-		try {
-			this.javaProjects = javaProjects;
-			this.settings = settings;
-		} finally {
-			monitor.ifPresent(IProgressMonitor::done);
-		}
-	}
+	protected CodeGenerationSettings settings;
 
-	@Override
-	public Object[] getElements() {
-		return null;
-	}
+	protected Map<ITypeRoot, CompilationUnit> typeRootToCompilationUnitMap = new HashMap<>();
 
-	@Override
-	public boolean isApplicable() throws CoreException {
-		return true;
+	public RefactoringProcessor(CodeGenerationSettings settings) {
+		this.settings = settings;
 	}
 
 	@Override
 	public RefactoringStatus checkInitialConditions(IProgressMonitor pm)
 			throws CoreException, OperationCanceledException {
 		this.clearCaches();
-		RefactoringStatus status = new RefactoringStatus();
-		return status;
+		return new RefactoringStatus();
 	}
 
-	public IJavaProject[] getJavaProjects() {
-		return this.javaProjects;
+	public void clearCaches() {
+		this.getTypeRootToCompilationUnitMap().clear();
+		this.getCompilationUnitToCompilationUnitRewriteMap().clear();
 	}
 
 	protected CompilationUnit getCompilationUnit(ITypeRoot root, IProgressMonitor pm) {
@@ -68,6 +50,19 @@ public abstract class RefactoringProcessor extends org.eclipse.ltk.core.refactor
 			this.getTypeRootToCompilationUnitMap().put(root, compilationUnit);
 		}
 		return compilationUnit;
+	}
+
+	protected CompilationUnitRewrite getCompilationUnitRewrite(ICompilationUnit unit, CompilationUnit root) {
+		CompilationUnitRewrite rewrite = this.getCompilationUnitToCompilationUnitRewriteMap().get(unit);
+		if (rewrite == null) {
+			rewrite = new CompilationUnitRewrite(unit, root);
+			this.getCompilationUnitToCompilationUnitRewriteMap().put(unit, rewrite);
+		}
+		return rewrite;
+	}
+
+	protected Map<ICompilationUnit, CompilationUnitRewrite> getCompilationUnitToCompilationUnitRewriteMap() {
+		return this.compilationUnitToCompilationUnitRewriteMap;
 	}
 
 	protected Map<ITypeRoot, CompilationUnit> getTypeRootToCompilationUnitMap() {
@@ -84,28 +79,4 @@ public abstract class RefactoringProcessor extends org.eclipse.ltk.core.refactor
 
 		manager.manage(rewrite.getCu(), change);
 	}
-
-	protected CompilationUnitRewrite getCompilationUnitRewrite(ICompilationUnit unit, CompilationUnit root) {
-		CompilationUnitRewrite rewrite = this.getCompilationUnitToCompilationUnitRewriteMap().get(unit);
-		if (rewrite == null) {
-			rewrite = new CompilationUnitRewrite(unit, root);
-			this.getCompilationUnitToCompilationUnitRewriteMap().put(unit, rewrite);
-		}
-		return rewrite;
-	}
-
-	public void clearCaches() {
-		this.getTypeRootToCompilationUnitMap().clear();
-	}
-
-	protected Map<ICompilationUnit, CompilationUnitRewrite> getCompilationUnitToCompilationUnitRewriteMap() {
-		return this.compilationUnitToCompilationUnitRewriteMap;
-	}
-
-	@Override
-	public RefactoringParticipant[] loadParticipants(RefactoringStatus status, SharableParticipants sharedParticipants)
-			throws CoreException {
-		return new RefactoringParticipant[0];
-	}
-
 }
