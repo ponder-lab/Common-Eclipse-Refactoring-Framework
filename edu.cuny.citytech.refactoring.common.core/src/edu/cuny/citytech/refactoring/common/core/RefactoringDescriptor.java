@@ -16,10 +16,11 @@ import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 public abstract class RefactoringDescriptor extends
 		org.eclipse.ltk.core.refactoring.RefactoringDescriptor {
 
+	@SuppressWarnings("rawtypes")
 	protected final Map fArguments;
 
 	protected RefactoringDescriptor(String refactoringID, String project,
-			String description, String comment, Map arguments) {
+			String description, String comment, @SuppressWarnings("rawtypes") Map arguments) {
 		super(refactoringID, project, description, comment,
 				RefactoringDescriptor.STRUCTURAL_CHANGE
 						| RefactoringDescriptor.MULTI_CHANGE);
@@ -36,6 +37,7 @@ public abstract class RefactoringDescriptor extends
 
 	protected abstract Refactoring createRefactoring();
 
+	@SuppressWarnings("rawtypes")
 	public Map getArguments() {
 		return this.fArguments;
 	}
