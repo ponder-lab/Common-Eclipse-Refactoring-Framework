@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package edu.cuny.citytech.refactoring.common.core;
 

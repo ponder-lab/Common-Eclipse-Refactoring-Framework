@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package edu.cuny.citytech.refactoring.common.core;
 
@@ -12,8 +12,7 @@ import org.eclipse.ltk.core.refactoring.RefactoringStatus;
  *         Khatchadourian</a>
  *
  */
-public abstract class Refactoring extends
-		org.eclipse.ltk.core.refactoring.Refactoring {
+public abstract class Refactoring extends org.eclipse.ltk.core.refactoring.Refactoring {
 
 	public RefactoringStatus initialize(@SuppressWarnings("rawtypes") Map arguments) {
 		return new RefactoringStatus();

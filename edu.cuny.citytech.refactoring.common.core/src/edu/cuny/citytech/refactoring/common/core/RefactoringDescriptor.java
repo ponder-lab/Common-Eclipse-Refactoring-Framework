@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package edu.cuny.citytech.refactoring.common.core;
 
@@ -13,29 +13,28 @@ import org.eclipse.ltk.core.refactoring.RefactoringStatus;
  *         Khatchadourian</a>
  *
  */
-public abstract class RefactoringDescriptor extends
-		org.eclipse.ltk.core.refactoring.RefactoringDescriptor {
+public abstract class RefactoringDescriptor extends org.eclipse.ltk.core.refactoring.RefactoringDescriptor {
 
 	@SuppressWarnings("rawtypes")
 	protected final Map fArguments;
 
-	protected RefactoringDescriptor(String refactoringID, String project,
-			String description, String comment, @SuppressWarnings("rawtypes") Map arguments) {
+	protected RefactoringDescriptor(String refactoringID, String project, String description, String comment,
+			@SuppressWarnings("rawtypes") Map arguments) {
 		super(refactoringID, project, description, comment,
-				RefactoringDescriptor.STRUCTURAL_CHANGE
-						| RefactoringDescriptor.MULTI_CHANGE);
+				RefactoringDescriptor.STRUCTURAL_CHANGE | RefactoringDescriptor.MULTI_CHANGE);
 
 		this.fArguments = arguments;
 	}
 
+	protected abstract Refactoring createRefactoring();
+
+	@Override
 	public org.eclipse.ltk.core.refactoring.Refactoring createRefactoring(RefactoringStatus status)
 			throws CoreException {
 		final Refactoring refactoring = this.createRefactoring();
 		status.merge(refactoring.initialize(this.fArguments));
 		return refactoring;
 	}
-
-	protected abstract Refactoring createRefactoring();
 
 	@SuppressWarnings("rawtypes")
 	public Map getArguments() {
