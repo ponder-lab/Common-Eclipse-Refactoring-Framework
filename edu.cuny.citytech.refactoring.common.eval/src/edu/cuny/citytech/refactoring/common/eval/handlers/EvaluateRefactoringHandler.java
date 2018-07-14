@@ -17,12 +17,9 @@ import org.eclipse.core.commands.ExecutionException;
  */
 public abstract class EvaluateRefactoringHandler extends AbstractHandler {
 
-	private static final boolean BUILD_WORKSPACE = false;
+	public static final boolean BUILD_WORKSPACE = false;
 	
-	private static CSVPrinter createCSVPrinter(String fileName, String[] header) throws IOException {
+	public static CSVPrinter createCSVPrinter(String fileName, String[] header) throws IOException {
 		return new CSVPrinter(new FileWriter(fileName, true), CSVFormat.EXCEL.withHeader(header));
 	}
-
-	@Override
-	public abstract Object execute(ExecutionEvent event) throws ExecutionException;
 }
