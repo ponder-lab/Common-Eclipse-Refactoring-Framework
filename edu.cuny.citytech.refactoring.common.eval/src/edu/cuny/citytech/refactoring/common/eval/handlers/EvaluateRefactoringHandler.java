@@ -29,7 +29,7 @@ import org.eclipse.jdt.core.JavaModelException;
 public abstract class EvaluateRefactoringHandler extends AbstractHandler {
 
 	public static final boolean BUILD_WORKSPACE = false;
-	
+
 	private static final String EVALUATION_PROPERTIES_FILE_NAME = "eval.properties";
 
 	public static CSVPrinter createCSVPrinter(String fileName, String[] header) throws IOException {
@@ -51,19 +51,19 @@ public abstract class EvaluateRefactoringHandler extends AbstractHandler {
 			return findEvaluationPropertiesFile(directory.getParentFile());
 	}
 
-	private static File findEvaluationPropertiesFile(IJavaProject project) throws JavaModelException {
+	protected static File findEvaluationPropertiesFile(IJavaProject project) throws JavaModelException {
 		IPath location = project.getCorrespondingResource().getLocation();
 		return findEvaluationPropertiesFile(location.toFile());
 	}
 
-	private static IType[] getAllDeclaringTypeSubtypes(IMethod method) throws JavaModelException {
+	protected static IType[] getAllDeclaringTypeSubtypes(IMethod method) throws JavaModelException {
 		IType declaringType = method.getDeclaringType();
 		ITypeHierarchy typeHierarchy = declaringType.newTypeHierarchy(new NullProgressMonitor());
 		IType[] allSubtypes = typeHierarchy.getAllSubtypes(declaringType);
 		return allSubtypes;
 	}
 
-	private static Set<IMethod> getAllMethods(IJavaProject javaProject) throws JavaModelException {
+	protected static Set<IMethod> getAllMethods(IJavaProject javaProject) throws JavaModelException {
 		Set<IMethod> methods = new HashSet<>();
 
 		// collect all methods from this project.
@@ -78,5 +78,4 @@ public abstract class EvaluateRefactoringHandler extends AbstractHandler {
 		}
 		return methods;
 	}
-
 }
