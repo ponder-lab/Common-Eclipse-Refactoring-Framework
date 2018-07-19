@@ -2,7 +2,7 @@
 <feature
       id="edu.cuny.citytech.refactoring.common.feature"
       label="Common Refactoring Framework"
-      version="1.11.0.qualifier"
+      version="1.12.0.qualifier"
       provider-name="Hunter College, City University of New York"
       plugin="edu.cuny.citytech.refactoring.common.core">
 
@@ -107,6 +107,13 @@ This Agreement is governed by the laws of the State of New York and the intellec
 
    <plugin
          id="edu.cuny.citytech.refactoring.common.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.cuny.citytech.refactoring.common.eval"
          download-size="0"
          install-size="0"
          version="0.0.0"

@@ -3,7 +3,7 @@
    <description name="Common Refactoring Framework Update Site" url="https://raw.githubusercontent.com/ponder-lab/Common-Eclipse-Refactoring-Framework/master/edu.cuny.citytech.refactoring.common.updatesite">
       A bootstrap framework for new refactoring tool plugins.
    </description>
-   <feature url="features/edu.cuny.citytech.refactoring.common.feature_1.11.0.201806261621.jar" id="edu.cuny.citytech.refactoring.common.feature" version="1.11.0.201806261621">
+   <feature url="features/edu.cuny.citytech.refactoring.common.feature_1.12.0.201807191128.jar" id="edu.cuny.citytech.refactoring.common.feature" version="1.12.0.201807191128">
       <category name="edu.cuny.citytech.refactoring.category"/>
    </feature>
    <category-def name="edu.cuny.citytech.refactoring.category" label="Common Refactoring Framework">
