@@ -17,6 +17,7 @@ import javax.tools.ToolProvider;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jdt.core.ICompilationUnit;
+import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IMethod;
 import org.eclipse.jdt.core.IPackageFragment;
 import org.eclipse.jdt.core.IType;
@@ -95,14 +96,14 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 	/**
 	 * Returns the refactoring to be tested.
 	 * 
-	 * @param methods
-	 *            The methods to refactor.
+	 * @param elements
+	 *            The {@link IJavaElement}s to refactor.
 	 * @param cu
 	 *            The compilation unit being tested. Can be null.
 	 * @return The refactoring to be tested.
 	 * @throws JavaModelException
 	 */
-	protected abstract Refactoring getRefactoring(IMethod... methods) throws JavaModelException; // TODO:
+	protected abstract Refactoring getRefactoring(IJavaElement... elements) throws JavaModelException; // TODO:
 																									// Should
 																									// use
 																									// createRefactoring().
