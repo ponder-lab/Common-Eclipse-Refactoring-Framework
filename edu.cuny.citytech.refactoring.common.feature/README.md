@@ -19,3 +19,5 @@ edu.cuny.citytech.defaultrefactoring.core_1.1.0,
 ```
 
 Close the org.eclipse.jdt plug-in project in the workspace. Then, rebuild.
+
+You can also try closing unnecessary projects in the workspace.
