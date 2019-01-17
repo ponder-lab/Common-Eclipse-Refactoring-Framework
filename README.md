@@ -1,4 +1,5 @@
-# Eclipse Java Refactoring Framework  [![Java profiler](https://www.ej-technologies.com/images/product_banners/jprofiler_small.png)](https://www.ej-technologies.com/products/jprofiler/overview.html)
+# Eclipse Java Refactoring Framework
+[![Java profiler](https://www.ej-technologies.com/images/product_banners/jprofiler_small.png)](https://www.ej-technologies.com/products/jprofiler/overview.html)
 
 A framework for making creating refactoring plugins in Eclipse a bit easier for particular kinds of refactorings.
 
