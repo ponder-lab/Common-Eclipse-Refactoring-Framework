@@ -1,5 +1,7 @@
 package edu.cuny.citytech.refactoring.common.tests;
 
+import static org.junit.Assert.assertTrue;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -22,11 +24,12 @@ import org.eclipse.jdt.core.IMethod;
 import org.eclipse.jdt.core.IPackageFragment;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaModelException;
+import org.eclipse.jdt.ui.tests.refactoring.GenericRefactoringTest;
 import org.eclipse.ltk.core.refactoring.Refactoring;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 
 @SuppressWarnings("restriction")
-public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactoring.RefactoringTest {
+public abstract class RefactoringTest extends GenericRefactoringTest {
 
 	private static final String REPLACE_EXPECTED_WITH_ACTUAL_KEY = "edu.cuny.citytech.refactoring.common.tests.replaceExpectedWithActual";
 
