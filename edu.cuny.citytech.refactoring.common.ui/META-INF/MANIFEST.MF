@@ -9,5 +9,7 @@ Require-Bundle: org.eclipse.ltk.core.refactoring,
  org.eclipse.equinox.registry,
  org.eclipse.ui.workbench,
  org.eclipse.osgi,
- org.eclipse.core.runtime
+ org.eclipse.core.runtime,
+ org.eclipse.ltk.ui.refactoring,
+ org.eclipse.ui
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
