@@ -7,7 +7,6 @@ import java.util.Optional;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.ITypeRoot;
 import org.eclipse.jdt.core.dom.CompilationUnit;
@@ -16,10 +15,9 @@ import org.eclipse.jdt.internal.corext.codemanipulation.CodeGenerationSettings;
 import org.eclipse.jdt.internal.corext.refactoring.structure.CompilationUnitRewrite;
 import org.eclipse.jdt.internal.corext.refactoring.util.RefactoringASTParser;
 import org.eclipse.jdt.internal.corext.refactoring.util.TextEditBasedChangeManager;
-import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 
 @SuppressWarnings("restriction")
-public abstract class JavaRefactoringProcessor extends org.eclipse.ltk.core.refactoring.participants.RefactoringProcessor {
+public abstract class JavaRefactoringProcessor extends RefactoringProcessor {
 
 	protected Map<ICompilationUnit, CompilationUnitRewrite> compilationUnitToCompilationUnitRewriteMap = new HashMap<>();
 
@@ -29,13 +27,6 @@ public abstract class JavaRefactoringProcessor extends org.eclipse.ltk.core.refa
 
 	public JavaRefactoringProcessor(CodeGenerationSettings settings) {
 		this.settings = settings;
-	}
-
-	@Override
-	public RefactoringStatus checkInitialConditions(IProgressMonitor pm)
-			throws CoreException, OperationCanceledException {
-		this.clearCaches();
-		return new RefactoringStatus();
 	}
 
 	public void clearCaches() {
