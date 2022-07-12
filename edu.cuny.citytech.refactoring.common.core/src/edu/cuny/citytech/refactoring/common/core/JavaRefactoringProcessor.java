@@ -19,7 +19,7 @@ import org.eclipse.jdt.internal.corext.refactoring.util.TextEditBasedChangeManag
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 
 @SuppressWarnings("restriction")
-public abstract class RefactoringProcessor extends org.eclipse.ltk.core.refactoring.participants.RefactoringProcessor {
+public abstract class JavaRefactoringProcessor extends org.eclipse.ltk.core.refactoring.participants.RefactoringProcessor {
 
 	protected Map<ICompilationUnit, CompilationUnitRewrite> compilationUnitToCompilationUnitRewriteMap = new HashMap<>();
 
@@ -27,7 +27,7 @@ public abstract class RefactoringProcessor extends org.eclipse.ltk.core.refactor
 
 	protected Map<ITypeRoot, CompilationUnit> typeRootToCompilationUnitMap = new HashMap<>();
 
-	public RefactoringProcessor(CodeGenerationSettings settings) {
+	public JavaRefactoringProcessor(CodeGenerationSettings settings) {
 		this.settings = settings;
 	}
 
