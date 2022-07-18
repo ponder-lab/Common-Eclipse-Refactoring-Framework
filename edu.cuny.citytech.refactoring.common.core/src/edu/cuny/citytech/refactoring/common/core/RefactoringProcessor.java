@@ -20,8 +20,15 @@ public abstract class RefactoringProcessor extends org.eclipse.ltk.core.refactor
 	@Override
 	public RefactoringStatus checkInitialConditions(IProgressMonitor pm)
 			throws CoreException, OperationCanceledException {
+		pm.beginTask(Messages.ClearingCaches, 2);
+
 		this.clearCaches();
+		pm.worked(1);
+
 		this.getExcludedTimeCollector().clear();
+		pm.worked(2);
+
+		pm.done();
 		return new RefactoringStatus();
 	}
 
