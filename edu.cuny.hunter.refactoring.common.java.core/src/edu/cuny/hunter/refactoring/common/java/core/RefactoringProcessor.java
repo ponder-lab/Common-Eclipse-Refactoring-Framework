@@ -16,10 +16,8 @@ import org.eclipse.jdt.internal.corext.refactoring.structure.CompilationUnitRewr
 import org.eclipse.jdt.internal.corext.refactoring.util.RefactoringASTParser;
 import org.eclipse.jdt.internal.corext.refactoring.util.TextEditBasedChangeManager;
 
-import edu.cuny.citytech.refactoring.common.core.RefactoringProcessor;
-
 @SuppressWarnings("restriction")
-public abstract class JavaRefactoringProcessor extends RefactoringProcessor {
+public abstract class RefactoringProcessor extends edu.cuny.citytech.refactoring.common.core.RefactoringProcessor {
 
 	protected Map<ICompilationUnit, CompilationUnitRewrite> compilationUnitToCompilationUnitRewriteMap = new HashMap<>();
 
@@ -27,7 +25,7 @@ public abstract class JavaRefactoringProcessor extends RefactoringProcessor {
 
 	protected Map<ITypeRoot, CompilationUnit> typeRootToCompilationUnitMap = new HashMap<>();
 
-	public JavaRefactoringProcessor(CodeGenerationSettings settings) {
+	public RefactoringProcessor(CodeGenerationSettings settings) {
 		this.settings = settings;
 	}
 
