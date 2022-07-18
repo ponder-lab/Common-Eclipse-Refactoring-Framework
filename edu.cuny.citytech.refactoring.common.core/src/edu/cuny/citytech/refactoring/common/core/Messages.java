@@ -10,7 +10,8 @@ import org.eclipse.osgi.util.NLS;
  *         Khatchadourian</a>
  */
 public class Messages extends NLS {
-	private static final String BUNDLE_NAME = "edu.cuny.citytech.refactoring.core.Messages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "edu.cuny.citytech.refactoring.common.core.Messages"; //$NON-NLS-1$
+	public static String ClearingCaches;
 	public static String CheckingPreconditions;
 	public static String CompilingSource;
 	public static String CreatingChange;
