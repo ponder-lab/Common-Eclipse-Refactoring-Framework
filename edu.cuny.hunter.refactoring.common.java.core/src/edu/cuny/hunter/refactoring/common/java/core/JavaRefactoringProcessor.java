@@ -1,4 +1,4 @@
-package edu.cuny.citytech.refactoring.common.core;
+package edu.cuny.hunter.refactoring.common.java.core;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,6 +15,8 @@ import org.eclipse.jdt.internal.corext.codemanipulation.CodeGenerationSettings;
 import org.eclipse.jdt.internal.corext.refactoring.structure.CompilationUnitRewrite;
 import org.eclipse.jdt.internal.corext.refactoring.util.RefactoringASTParser;
 import org.eclipse.jdt.internal.corext.refactoring.util.TextEditBasedChangeManager;
+
+import edu.cuny.citytech.refactoring.common.core.RefactoringProcessor;
 
 @SuppressWarnings("restriction")
 public abstract class JavaRefactoringProcessor extends RefactoringProcessor {
