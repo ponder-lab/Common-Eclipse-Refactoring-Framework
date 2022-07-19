@@ -1,5 +1,7 @@
 package edu.cuny.citytech.refactoring.common.tests;
 
+import static org.junit.Assert.assertTrue;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -22,56 +24,55 @@ import org.eclipse.jdt.core.IMethod;
 import org.eclipse.jdt.core.IPackageFragment;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaModelException;
+import org.eclipse.jdt.ui.tests.refactoring.GenericRefactoringTest;
+import org.eclipse.jdt.ui.tests.refactoring.rules.RefactoringTestSetup;
 import org.eclipse.ltk.core.refactoring.Refactoring;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 
 @SuppressWarnings("restriction")
-public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactoring.RefactoringTest {
+public abstract class RefactoringTest extends GenericRefactoringTest {
 
 	private static final String REPLACE_EXPECTED_WITH_ACTUAL_KEY = "edu.cuny.citytech.refactoring.common.tests.replaceExpectedWithActual";
 
 	/**
-	 * The name of the directory containing resources under the project
-	 * directory.
+	 * The name of the directory containing resources under the project directory.
 	 */
 	private static final String RESOURCE_PATH = "resources";
 
 	/**
-	 * True if the expected output should be replaced with the actual output.
-	 * Useful to creating new or updated test data and false otherwise.
+	 * True if the expected output should be replaced with the actual output. Useful
+	 * to creating new or updated test data and false otherwise.
 	 */
 	private boolean replaceExpectedWithActual;
 
 	/**
 	 * Creates a new {@link RefactoringTest}.
 	 * 
-	 * @param name
-	 *            The name of the test.
-	 * @param replaceExpectedWithActual
-	 *            True if the expected output should be replaced with the actual
-	 *            output.
-	 * @see org.eclipse.jdt.ui.tests.refactoring.RefactoringTest
+	 * @param replaceExpectedWithActual True if the expected output should be
+	 *        replaced with the actual output.
 	 */
-	public RefactoringTest(String name, boolean replaceExpectedWithActual) {
-		super(name);
+	public RefactoringTest(boolean replaceExpectedWithActual) {
 		this.replaceExpectedWithActual = replaceExpectedWithActual;
 	}
 
 	/**
 	 * Creates a new {@link RefactoringTest}.
-	 * 
-	 * @param name
-	 *            The name of the test.
-	 * @see org.eclipse.jdt.ui.tests.refactoring.RefactoringTest
 	 */
-	public RefactoringTest(String name) {
-		super(name);
+	public RefactoringTest() {
+		setReplaceExpectedWithActualFromProperty();
 
+	}
+
+	private void setReplaceExpectedWithActualFromProperty() {
 		String replaceProperty = System.getenv(REPLACE_EXPECTED_WITH_ACTUAL_KEY);
 
 		if (replaceProperty != null)
 			this.replaceExpectedWithActual = Boolean.valueOf(replaceProperty);
+	}
 
+	public RefactoringTest(RefactoringTestSetup rts) {
+		super(rts);
+		this.setReplaceExpectedWithActualFromProperty();
 	}
 
 	private static void assertFailedPrecondition(RefactoringStatus initialStatus, RefactoringStatus finalStatus) {
@@ -96,27 +97,23 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 	/**
 	 * Returns the refactoring to be tested.
 	 * 
-	 * @param elements
-	 *            The {@link IJavaElement}s to refactor.
-	 * @param cu
-	 *            The compilation unit being tested. Can be null.
+	 * @param elements The {@link IJavaElement}s to refactor.
+	 * @param cu The compilation unit being tested. Can be null.
 	 * @return The refactoring to be tested.
 	 * @throws JavaModelException
 	 */
 	protected abstract Refactoring getRefactoring(IJavaElement... elements) throws JavaModelException; // TODO:
-																									// Should
-																									// use
-																									// createRefactoring().
+																										// Should
+																										// use
+																										// createRefactoring().
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * org.eclipse.jdt.ui.tests.refactoring.RefactoringTest#getFileContents(java
-	 * .lang.String) Had to override this method because, since this plug-in is
-	 * a fragment (at least I think that this is the reason), it doesn't have an
-	 * activator and the bundle is resolving to the eclipse refactoring test
-	 * bundle.
+	 * .lang.String) Had to override this method because, since this plug-in is a
+	 * fragment (at least I think that this is the reason), it doesn't have an
+	 * activator and the bundle is resolving to the eclipse refactoring test bundle.
 	 */
 	@Override
 	public String getFileContents(String fileName) throws IOException {
@@ -138,7 +135,6 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * org.eclipse.jdt.ui.tests.refactoring.RefactoringTest#createCUfromTestFile
 	 * (org.eclipse.jdt.core.IPackageFragment, java.lang.String)
@@ -198,14 +194,11 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 	/**
 	 * Check for a failed precondition for a case with an inner type.
 	 * 
-	 * @param outerMethodName
-	 *            The method declaring the anonymous type.
-	 * @param outerSignature
-	 *            The signature of the method declaring the anonymous type.
-	 * @param methodNames
-	 *            The methods in the anonymous type.
-	 * @param signatures
-	 *            The signatures of the methods in the anonymous type.
+	 * @param outerMethodName The method declaring the anonymous type.
+	 * @param outerSignature The signature of the method declaring the anonymous
+	 *        type.
+	 * @param methodNames The methods in the anonymous type.
+	 * @param signatures The signatures of the methods in the anonymous type.
 	 * @throws Exception
 	 */
 	protected void helperFail(String outerMethodName, String[] outerSignature, String[] methodNames,
@@ -224,10 +217,8 @@ public abstract class RefactoringTest extends org.eclipse.jdt.ui.tests.refactori
 	/**
 	 * Check for failed precondition for a simple case.
 	 * 
-	 * @param methodNames
-	 *            The methods to test.
-	 * @param signatures
-	 *            Their signatures.
+	 * @param methodNames The methods to test.
+	 * @param signatures Their signatures.
 	 * @throws Exception
 	 */
 	protected void helperFail(String[] methodNames, String[][] signatures) throws Exception {
