@@ -9,6 +9,7 @@ import java.nio.file.Path;
 import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import javax.tools.JavaCompiler;
 import javax.tools.ToolProvider;
@@ -83,6 +84,8 @@ public abstract class JavaRefactoringTest extends RefactoringTest {
 		else
 			return unit;
 	}
+
+	protected abstract Logger getLogger(); // TODO: Use built-in Eclipse logger.
 
 	/**
 	 * Returns the refactoring to be tested.

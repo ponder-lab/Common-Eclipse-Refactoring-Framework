@@ -7,7 +7,6 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.logging.Logger;
 
 import org.eclipse.jdt.ui.tests.refactoring.GenericRefactoringTest;
 import org.eclipse.jdt.ui.tests.refactoring.rules.RefactoringTestSetup;
@@ -49,7 +48,6 @@ public abstract class RefactoringTest extends GenericRefactoringTest {
 	 */
 	public RefactoringTest() {
 		setReplaceExpectedWithActualFromProperty();
-
 	}
 
 	/**
@@ -82,13 +80,22 @@ public abstract class RefactoringTest extends GenericRefactoringTest {
 		return new String(encoded, Charset.defaultCharset());
 	}
 
-	protected abstract Logger getLogger(); // TODO: Should use built-in Eclipse
-											// logger.
 
 	private void setReplaceExpectedWithActualFromProperty() {
 		String replaceProperty = System.getenv(REPLACE_EXPECTED_WITH_ACTUAL_KEY);
 
 		if (replaceProperty != null)
 			this.replaceExpectedWithActual = Boolean.valueOf(replaceProperty);
+	}
+	
+	/**
+	 * Returns the extension of the test file(s), e.g., .py, .java.
+	 * @return The test filename extension.
+	 */
+	protected abstract String getTestFileExtension();
+	
+	@Override
+	protected String createTestFileName(String fileName, String infix) {
+		return getTestPath() + getName() + infix + fileName + '.' + getTestFileExtension();
 	}
 }
