@@ -26,7 +26,7 @@ public abstract class RefactoringTest extends GenericRefactoringTest {
 		assertTrue("Precondition was supposed to fail.", !initialStatus.isOK() || !finalStatus.isOK());
 	}
 
-	private static Path getAbsolutionPath(String fileName) {
+	protected static Path getAbsolutionPath(String fileName) {
 		Path path = Paths.get(RESOURCE_PATH, fileName);
 		Path absolutePath = path.toAbsolutePath();
 		return absolutePath;
