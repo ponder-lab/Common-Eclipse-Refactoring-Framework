@@ -24,8 +24,6 @@ import org.eclipse.ui.PlatformUI;
  */
 public abstract class InputPage extends UserInputWizardPage {
 
-	private RefactoringProcessor processor;
-
 	private IDialogSettings settings;
 
 	public InputPage(String name) {
