@@ -21,7 +21,7 @@ public abstract class EvaluateRefactoringHandler extends AbstractHandler {
 	private static final String EVALUATION_PROPERTIES_FILE_NAME = "eval.properties";
 
 	public static CSVPrinter createCSVPrinter(String fileName, String[] header) throws IOException {
-		return new CSVPrinter(new FileWriter(fileName, true), CSVFormat.EXCEL.withHeader(header));
+		return new CSVPrinter(new FileWriter(fileName, true), CSVFormat.EXCEL.builder().setHeader(header).build());
 	}
 
 	protected static File findEvaluationPropertiesFile(File directory) {
