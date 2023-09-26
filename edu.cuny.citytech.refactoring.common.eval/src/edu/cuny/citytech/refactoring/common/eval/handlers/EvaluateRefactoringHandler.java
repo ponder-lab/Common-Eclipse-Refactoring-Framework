@@ -16,8 +16,6 @@ import org.eclipse.core.commands.AbstractHandler;
  */
 public abstract class EvaluateRefactoringHandler extends AbstractHandler {
 
-	public static final boolean BUILD_WORKSPACE = false;
-
 	private static final String EVALUATION_PROPERTIES_FILE_NAME = "eval.properties";
 
 	public static CSVPrinter createCSVPrinter(String fileName, String[] header) throws IOException {
