@@ -22,18 +22,22 @@ public abstract class EvaluateRefactoringHandler extends AbstractHandler {
 		return new CSVPrinter(new FileWriter(fileName, true), CSVFormat.EXCEL.builder().setHeader(header).build());
 	}
 
-	protected static File findEvaluationPropertiesFile(File directory) {
+	protected File findEvaluationPropertiesFile(File directory) {
 		if (directory == null)
 			return null;
 
 		if (!directory.isDirectory())
 			throw new IllegalArgumentException("Expecting directory: " + directory + ".");
 
-		File evaluationFile = directory.toPath().resolve(EVALUATION_PROPERTIES_FILE_NAME).toFile();
+		File evaluationFile = directory.toPath().resolve(getEvaluationPropertiesFileName()).toFile();
 
 		if (evaluationFile != null && evaluationFile.exists())
 			return evaluationFile;
 		else
 			return findEvaluationPropertiesFile(directory.getParentFile());
+	}
+
+	protected String getEvaluationPropertiesFileName() {
+		return EVALUATION_PROPERTIES_FILE_NAME;
 	}
 }
