@@ -23,7 +23,7 @@ import org.eclipse.jdt.core.JavaModelException;
  */
 public abstract class EvaluateRefactoringHandler extends edu.cuny.citytech.refactoring.common.eval.handlers.EvaluateRefactoringHandler {
 
-	protected static File findEvaluationPropertiesFile(IJavaProject project) throws JavaModelException {
+	protected File findEvaluationPropertiesFile(IJavaProject project) throws JavaModelException {
 		IPath location = project.getCorrespondingResource().getLocation();
 		return findEvaluationPropertiesFile(location.toFile());
 	}
