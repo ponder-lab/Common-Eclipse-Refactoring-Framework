@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: edu.cuny.citytech.refactoring.common.core
-Bundle-Version: 3.3.0.qualifier
+Bundle-Version: 3.4.0.qualifier
 Export-Package: edu.cuny.citytech.refactoring.common.core
 Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.ltk.core.refactoring,
