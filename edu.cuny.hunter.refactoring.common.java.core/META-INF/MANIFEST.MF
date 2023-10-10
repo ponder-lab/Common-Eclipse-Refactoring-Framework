@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: edu.cuny.hunter.refactoring.common.java.core
-Bundle-Version: 3.5.0.qualifier
+Bundle-Version: 3.6.0.qualifier
 Export-Package: edu.cuny.hunter.refactoring.common.java.core
 Bundle-Vendor: %Bundle-Vendor
 Automatic-Module-Name: edu.cuny.hunter.refactoring.common.java.core
