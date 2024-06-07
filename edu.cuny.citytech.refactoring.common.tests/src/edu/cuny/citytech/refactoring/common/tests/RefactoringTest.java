@@ -26,14 +26,14 @@ public abstract class RefactoringTest extends GenericRefactoringTest {
 		assertTrue("Precondition was supposed to fail.", !initialStatus.isOK() || !finalStatus.isOK());
 	}
 
-	protected static Path getAbsolutionPath(String fileName) {
+	protected static Path getAbsolutePath(String fileName) {
 		Path path = Paths.get(RESOURCE_PATH, fileName);
 		Path absolutePath = path.toAbsolutePath();
 		return absolutePath;
 	}
 
 	public static void setFileContents(String fileName, String contents) throws IOException {
-		Path absolutePath = getAbsolutionPath(fileName);
+		Path absolutePath = getAbsolutePath(fileName);
 		Files.write(absolutePath, contents.getBytes());
 	}
 
@@ -75,7 +75,7 @@ public abstract class RefactoringTest extends GenericRefactoringTest {
 	 */
 	@Override
 	public String getFileContents(String fileName) throws IOException {
-		Path absolutePath = getAbsolutionPath(fileName);
+		Path absolutePath = getAbsolutePath(fileName);
 		byte[] encoded = Files.readAllBytes(absolutePath);
 		return new String(encoded, Charset.defaultCharset());
 	}
