@@ -87,13 +87,13 @@ public abstract class RefactoringTest extends GenericRefactoringTest {
 		if (replaceProperty != null)
 			this.replaceExpectedWithActual = Boolean.valueOf(replaceProperty);
 	}
-	
+
 	/**
 	 * Returns the extension of the test file(s), e.g., .py, .java.
 	 * @return The test filename extension.
 	 */
 	protected abstract String getTestFileExtension();
-	
+
 	@Override
 	protected String createTestFileName(String fileName, String infix) {
 		return getTestPath() + getName() + infix + fileName + '.' + getTestFileExtension();
