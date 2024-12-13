@@ -19,7 +19,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * @author <a href="mailto:raffi.khatchadourian@hunter.cuny.edu">Raffi
+ * @author <a href="mailto:khatchad@hunter.cuny.edu">Raffi
  *         Khatchadourian</a>
  */
 public abstract class InputPage extends UserInputWizardPage {

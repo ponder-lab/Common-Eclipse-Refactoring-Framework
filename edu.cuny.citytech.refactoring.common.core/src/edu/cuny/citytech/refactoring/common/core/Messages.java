@@ -6,7 +6,7 @@ package edu.cuny.citytech.refactoring.common.core;
 import org.eclipse.osgi.util.NLS;
 
 /**
- * @author <a href="mailto:raffi.khatchadourian@hunter.cuny.edu">Raffi
+ * @author <a href="mailto:khatchad@hunter.cuny.edu">Raffi
  *         Khatchadourian</a>
  */
 public class Messages extends NLS {

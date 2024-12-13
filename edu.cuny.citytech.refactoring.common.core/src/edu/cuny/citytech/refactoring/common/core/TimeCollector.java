@@ -4,7 +4,7 @@
 package edu.cuny.citytech.refactoring.common.core;
 
 /**
- * @author <a href="mailto:raffi.khatchadourian@hunter.cuny.edu>Raffi Khatchadourian</a>
+ * @author <a href="mailto:khatchad@hunter.cuny.edu>Raffi Khatchadourian</a>
  */
 public class TimeCollector {
 
