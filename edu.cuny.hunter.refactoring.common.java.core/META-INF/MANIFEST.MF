@@ -6,7 +6,7 @@ Bundle-Version: 3.8.0.qualifier
 Export-Package: edu.cuny.hunter.refactoring.common.java.core
 Bundle-Vendor: %Bundle-Vendor
 Automatic-Module-Name: edu.cuny.hunter.refactoring.common.java.core
-Bundle-RequiredExecutionEnvironment: JavaSE-17
+Bundle-RequiredExecutionEnvironment: JavaSE-21
 Require-Bundle: edu.cuny.citytech.refactoring.common.core,
  org.eclipse.jdt.core,
  org.eclipse.jdt.ui,

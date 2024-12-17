@@ -4,7 +4,7 @@ Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: edu.cuny.hunter.refactoring.common.java.eval
 Bundle-Version: 3.8.0.qualifier
 Automatic-Module-Name: edu.cuny.hunter.refactoring.common.java.eval
-Bundle-RequiredExecutionEnvironment: JavaSE-17
+Bundle-RequiredExecutionEnvironment: JavaSE-21
 Bundle-ClassPath: .
 Require-Bundle: org.eclipse.core.commands
 Export-Package: edu.cuny.hunter.refactoring.common.java.eval.handlers

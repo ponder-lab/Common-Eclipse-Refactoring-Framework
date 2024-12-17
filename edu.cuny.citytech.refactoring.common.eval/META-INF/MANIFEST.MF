@@ -4,7 +4,7 @@ Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: edu.cuny.citytech.refactoring.common.eval
 Bundle-Version: 3.8.0.qualifier
 Automatic-Module-Name: edu.cuny.citytech.refactoring.common.eval
-Bundle-RequiredExecutionEnvironment: JavaSE-17
+Bundle-RequiredExecutionEnvironment: JavaSE-21
 Bundle-ClassPath: .,
  lib/commons-csv-1.10.0.jar
 Require-Bundle: org.eclipse.core.commands
