@@ -3,7 +3,11 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: edu.cuny.citytech.refactoring.common.core
 Bundle-Version: 3.9.0.qualifier
-Export-Package: edu.cuny.citytech.refactoring.common.core
+Export-Package: edu.cuny.citytech.refactoring.common.core;version="3.9.0";
+  uses:="org.eclipse.core.runtime,
+   org.eclipse.osgi.util,
+   org.eclipse.ltk.core.refactoring,
+   org.eclipse.ltk.core.refactoring.participants"
 Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.ltk.core.refactoring,
  org.eclipse.equinox.registry,

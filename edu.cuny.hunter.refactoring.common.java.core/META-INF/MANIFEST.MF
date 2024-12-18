@@ -3,7 +3,14 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: edu.cuny.hunter.refactoring.common.java.core
 Bundle-Version: 3.9.0.qualifier
-Export-Package: edu.cuny.hunter.refactoring.common.java.core
+Export-Package: edu.cuny.hunter.refactoring.common.java.core;version="3.9.0";
+  uses:="org.eclipse.jdt.internal.corext.refactoring.util,
+   org.eclipse.core.runtime,
+   org.eclipse.jdt.core,
+   org.eclipse.jdt.core.dom,
+   org.eclipse.jdt.internal.corext.codemanipulation,
+   edu.cuny.citytech.refactoring.common.core,
+   org.eclipse.jdt.internal.corext.refactoring.structure"
 Bundle-Vendor: %Bundle-Vendor
 Automatic-Module-Name: edu.cuny.hunter.refactoring.common.java.core
 Bundle-RequiredExecutionEnvironment: JavaSE-21

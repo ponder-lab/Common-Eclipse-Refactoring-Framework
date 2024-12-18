@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: edu.cuny.hunter.refactoring.common.java.ui
 Bundle-Version: 3.9.0.qualifier
-Export-Package: edu.cuny.hunter.refactoring.common.java.ui
+Export-Package: edu.cuny.hunter.refactoring.common.java.ui;version="3.9.0"
 Bundle-Vendor: %Bundle-Vendor
 Automatic-Module-Name: edu.cuny.hunter.refactoring.common.java.ui
 Bundle-RequiredExecutionEnvironment: JavaSE-21
