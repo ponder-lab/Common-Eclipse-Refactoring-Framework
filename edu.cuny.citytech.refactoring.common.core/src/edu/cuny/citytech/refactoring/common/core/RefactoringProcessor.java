@@ -4,6 +4,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
+import org.eclipse.ltk.core.refactoring.participants.RefactoringParticipant;
+import org.eclipse.ltk.core.refactoring.participants.SharableParticipants;
 
 /**
  * Language agnostic {@link RefactoringProcessor}.
@@ -36,5 +38,11 @@ public abstract class RefactoringProcessor extends org.eclipse.ltk.core.refactor
 
 	public TimeCollector getExcludedTimeCollector() {
 		return this.excludedTimeCollector;
+	}
+
+	@Override
+	public RefactoringParticipant[] loadParticipants(RefactoringStatus status, SharableParticipants sharedParticipants)
+			throws CoreException {
+		return new RefactoringParticipant[0];
 	}
 }

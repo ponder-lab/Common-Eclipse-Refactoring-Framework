@@ -16,6 +16,11 @@ import org.eclipse.jdt.internal.corext.refactoring.structure.CompilationUnitRewr
 import org.eclipse.jdt.internal.corext.refactoring.util.RefactoringASTParser;
 import org.eclipse.jdt.internal.corext.refactoring.util.TextEditBasedChangeManager;
 
+/**
+ * A {@link RefactoringProcessor} specific to Java refactorings.
+ *
+ * @author <a href="mailto:khatchad@hunter.cuny.edu">Raffi Khatchadourian</a>
+ */
 @SuppressWarnings("restriction")
 public abstract class RefactoringProcessor extends edu.cuny.citytech.refactoring.common.core.RefactoringProcessor {
 
