@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: edu.cuny.hunter.refactoring.common.java.eval
-Bundle-Version: 3.8.0.qualifier
+Bundle-Version: 3.9.0.qualifier
 Automatic-Module-Name: edu.cuny.hunter.refactoring.common.java.eval
 Bundle-RequiredExecutionEnvironment: JavaSE-21
 Bundle-ClassPath: .
