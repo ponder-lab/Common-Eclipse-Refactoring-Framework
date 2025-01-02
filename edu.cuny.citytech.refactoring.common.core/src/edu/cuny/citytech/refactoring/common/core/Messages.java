@@ -3,8 +3,7 @@ package edu.cuny.citytech.refactoring.common.core;
 import org.eclipse.osgi.util.NLS;
 
 /**
- * @author <a href="mailto:khatchad@hunter.cuny.edu">Raffi
- *         Khatchadourian</a>
+ * @author <a href="mailto:khatchad@hunter.cuny.edu">Raffi Khatchadourian</a>
  */
 public class Messages extends NLS {
 	private static final String BUNDLE_NAME = "edu.cuny.citytech.refactoring.common.core.Messages"; //$NON-NLS-1$
