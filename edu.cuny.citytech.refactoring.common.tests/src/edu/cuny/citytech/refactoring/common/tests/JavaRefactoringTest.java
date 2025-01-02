@@ -1,6 +1,7 @@
 package edu.cuny.citytech.refactoring.common.tests;
 
 import static org.junit.Assert.assertTrue;
+import static org.eclipse.core.runtime.Platform.getLog;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,12 +10,12 @@ import java.nio.file.Path;
 import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
-import java.util.logging.Logger;
 
 import javax.tools.JavaCompiler;
 import javax.tools.ToolProvider;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.ILog;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IJavaElement;
@@ -85,7 +86,9 @@ public abstract class JavaRefactoringTest extends RefactoringTest {
 			return unit;
 	}
 
-	protected abstract Logger getLogger(); // TODO: Use built-in Eclipse logger.
+	protected ILog getLogger() {
+		return getLog(this.getClass());
+	}
 
 	/**
 	 * Returns the refactoring to be tested.
