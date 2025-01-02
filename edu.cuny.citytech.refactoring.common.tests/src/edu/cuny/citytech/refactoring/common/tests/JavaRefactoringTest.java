@@ -191,7 +191,7 @@ public abstract class JavaRefactoringTest extends RefactoringTest {
 		if (testCompilation)
 			assertTrue("Actual output should compile.", compiles(actual));
 
-		if (this.replaceExpectedWithActual)
+		if (this.getReplaceExpectedWithActual())
 			setFileContents(outputTestFileName, actual);
 
 		String expected = getFileContents(outputTestFileName);
@@ -261,7 +261,7 @@ public abstract class JavaRefactoringTest extends RefactoringTest {
 		String actual = cu.getSource();
 		assertTrue("Actual output should compile.", compiles(actual));
 
-		if (this.replaceExpectedWithActual)
+		if (this.getReplaceExpectedWithActual())
 			setFileContents(outputTestFileName, actual);
 
 		String expected = getFileContents(outputTestFileName);
@@ -297,7 +297,7 @@ public abstract class JavaRefactoringTest extends RefactoringTest {
 		String actual = cu.getSource();
 		assertTrue("Actual output should compile.", compiles(actual));
 
-		if (this.replaceExpectedWithActual)
+		if (this.getReplaceExpectedWithActual())
 			setFileContents(outputTestFileName, actual);
 
 		String expected = getFileContents(outputTestFileName);
@@ -336,7 +336,7 @@ public abstract class JavaRefactoringTest extends RefactoringTest {
 		String actual = cu.getSource();
 		assertTrue("Actual output should compile.", compiles(actual));
 
-		if (this.replaceExpectedWithActual)
+		if (this.getReplaceExpectedWithActual())
 			setFileContents(outputTestFileName, actual);
 
 		String expected = getFileContents(outputTestFileName);

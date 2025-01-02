@@ -41,7 +41,7 @@ public abstract class RefactoringTest extends GenericRefactoringTest {
 	 * True if the expected output should be replaced with the actual output. Useful
 	 * to creating new or updated test data and false otherwise.
 	 */
-	protected boolean replaceExpectedWithActual;
+	private boolean replaceExpectedWithActual;
 
 	/**
 	 * Creates a new {@link RefactoringTest}.
@@ -85,7 +85,7 @@ public abstract class RefactoringTest extends GenericRefactoringTest {
 		String replaceProperty = System.getenv(REPLACE_EXPECTED_WITH_ACTUAL_KEY);
 
 		if (replaceProperty != null)
-			this.replaceExpectedWithActual = Boolean.valueOf(replaceProperty);
+			this.setReplaceExpectedWithActual(Boolean.valueOf(replaceProperty));
 	}
 
 	/**
@@ -97,5 +97,13 @@ public abstract class RefactoringTest extends GenericRefactoringTest {
 	@Override
 	protected String createTestFileName(String fileName, String infix) {
 		return getTestPath() + getName() + infix + fileName + '.' + getTestFileExtension();
+	}
+
+	protected boolean getReplaceExpectedWithActual() {
+		return replaceExpectedWithActual;
+	}
+
+	protected void setReplaceExpectedWithActual(boolean replaceExpectedWithActual) {
+		this.replaceExpectedWithActual = replaceExpectedWithActual;
 	}
 }
