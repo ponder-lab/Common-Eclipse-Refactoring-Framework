@@ -6,7 +6,8 @@ import org.eclipse.osgi.util.NLS;
  * @author <a href="mailto:khatchad@hunter.cuny.edu">Raffi Khatchadourian</a>
  */
 public class Messages extends NLS {
-	private static final String BUNDLE_NAME = "edu.cuny.citytech.refactoring.common.core.Messages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "edu.cuny.citytech.refactoring.common.core.messages"; //$NON-NLS-1$
+
 	public static String ClearingCaches;
 	public static String CheckingPreconditions;
 	public static String CompilingSource;
