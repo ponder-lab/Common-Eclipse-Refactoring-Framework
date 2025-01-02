@@ -1,6 +1,3 @@
-/**
- *
- */
 package edu.cuny.citytech.refactoring.common.core;
 
 import org.eclipse.osgi.util.NLS;
@@ -24,6 +21,5 @@ public class Messages extends NLS {
 	}
 
 	private Messages() {
-		// Do not instantiate.
 	}
 }
