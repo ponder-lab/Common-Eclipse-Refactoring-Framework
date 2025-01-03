@@ -85,9 +85,8 @@ public abstract class JavaRefactoringTest extends RefactoringTest {
 
 	/*
 	 * (non-Javadoc)
-	 * @see
-	 * org.eclipse.jdt.ui.tests.refactoring.RefactoringTest#createCUfromTestFile
-	 * (org.eclipse.jdt.core.IPackageFragment, java.lang.String)
+	 * @see org.eclipse.jdt.ui.tests.refactoring.RefactoringTest#createCUfromTestFile (org.eclipse.jdt.core.IPackageFragment,
+	 * java.lang.String)
 	 */
 	@Override
 	protected ICompilationUnit createCUfromTestFile(IPackageFragment pack, String cuName) throws Exception {
@@ -125,8 +124,8 @@ public abstract class JavaRefactoringTest extends RefactoringTest {
 		helperFail("A", null, null);
 	}
 
-	private void helperFail(String typeName, String outerMethodName, String[] outerSignature, String innerTypeName,
-			String[] methodNames, String[][] signatures) throws Exception {
+	private void helperFail(String typeName, String outerMethodName, String[] outerSignature, String innerTypeName, String[] methodNames,
+			String[][] signatures) throws Exception {
 		ICompilationUnit cu = createCUfromTestFile(getPackageP(), typeName);
 		IType type = getType(cu, typeName);
 
@@ -145,8 +144,8 @@ public abstract class JavaRefactoringTest extends RefactoringTest {
 		assertFailedPrecondition(methods);
 	}
 
-	protected void helperFail(String outerMethodName, String[] outerSignature, String innerTypeName,
-			String[] methodNames, String[][] signatures) throws Exception {
+	protected void helperFail(String outerMethodName, String[] outerSignature, String innerTypeName, String[] methodNames,
+			String[][] signatures) throws Exception {
 		helperFail("A", outerMethodName, outerSignature, innerTypeName, methodNames, signatures);
 	}
 
@@ -154,14 +153,13 @@ public abstract class JavaRefactoringTest extends RefactoringTest {
 	 * Check for a failed precondition for a case with an inner type.
 	 *
 	 * @param outerMethodName The method declaring the anonymous type.
-	 * @param outerSignature The signature of the method declaring the anonymous
-	 *        type.
+	 * @param outerSignature The signature of the method declaring the anonymous type.
 	 * @param methodNames The methods in the anonymous type.
 	 * @param signatures The signatures of the methods in the anonymous type.
 	 * @throws Exception
 	 */
-	protected void helperFail(String outerMethodName, String[] outerSignature, String[] methodNames,
-			String[][] signatures) throws Exception {
+	protected void helperFail(String outerMethodName, String[] outerSignature, String[] methodNames, String[][] signatures)
+			throws Exception {
 		helperFail("A", outerMethodName, outerSignature, null, methodNames, signatures);
 	}
 
@@ -180,8 +178,7 @@ public abstract class JavaRefactoringTest extends RefactoringTest {
 		helperFail("A", null, null, null, methodNames, signatures);
 	}
 
-	private void helperPass(ICompilationUnit cu, IMethod[] methods)
-			throws JavaModelException, CoreException, Exception, IOException {
+	private void helperPass(ICompilationUnit cu, IMethod[] methods) throws JavaModelException, CoreException, Exception, IOException {
 		helperPass(cu, methods, true);
 	}
 
@@ -211,8 +208,8 @@ public abstract class JavaRefactoringTest extends RefactoringTest {
 		assertEqualLines(expected, actual);
 	}
 
-	private void helperPass(String typeName, String outerMethodName, String[] outerSignature, String innerTypeName,
-			String[] methodNames, String[][] signatures) throws Exception {
+	private void helperPass(String typeName, String outerMethodName, String[] outerSignature, String innerTypeName, String[] methodNames,
+			String[][] signatures) throws Exception {
 		ICompilationUnit cu = createCUfromTestFile(getPackageP(), typeName);
 		IType type = getType(cu, typeName);
 
@@ -249,8 +246,8 @@ public abstract class JavaRefactoringTest extends RefactoringTest {
 	/**
 	 * Test methods in two classes, namely, A and B.
 	 */
-	protected void helperPass(String[] methodNames1, String[][] signatures1, String[] methodNames2,
-			String[][] signatures2) throws Exception {
+	protected void helperPass(String[] methodNames1, String[][] signatures1, String[] methodNames2, String[][] signatures2)
+			throws Exception {
 		ICompilationUnit cu = createCUfromTestFile(getPackageP(), "A");
 		IType type = getType(cu, "A");
 		Set<IMethod> methodSet = new LinkedHashSet<>();
@@ -284,8 +281,8 @@ public abstract class JavaRefactoringTest extends RefactoringTest {
 	/**
 	 * Test methods in two classes, namely, A and B, with no fatal errors.
 	 */
-	protected void helperPassNoFatal(String[] methodNames1, String[][] signatures1, String[] methodNames2,
-			String[][] signatures2) throws Exception {
+	protected void helperPassNoFatal(String[] methodNames1, String[][] signatures1, String[] methodNames2, String[][] signatures2)
+			throws Exception {
 		ICompilationUnit cu = createCUfromTestFile(getPackageP(), "A");
 		IType type = getType(cu, "A");
 		Set<IMethod> methodSet = new LinkedHashSet<>();
@@ -302,8 +299,7 @@ public abstract class JavaRefactoringTest extends RefactoringTest {
 		RefactoringStatus finalStatus = refactoring.checkFinalConditions(new NullProgressMonitor());
 		getLogger().info("Final status: " + finalStatus);
 
-		assertTrue("Precondition was supposed to pass.",
-				!initialStatus.hasFatalError() && !finalStatus.hasFatalError());
+		assertTrue("Precondition was supposed to pass.", !initialStatus.hasFatalError() && !finalStatus.hasFatalError());
 		performChange(refactoring, false);
 
 		String outputTestFileName = getOutputTestFileName("A");
@@ -320,8 +316,8 @@ public abstract class JavaRefactoringTest extends RefactoringTest {
 	/**
 	 * Test methods in three classes, namely, A, B, and C, with no fatal errors.
 	 */
-	protected void helperPassNoFatal(String[] methodNames1, String[][] signatures1, String[] methodNames2,
-			String[][] signatures2, String[] methodNames3, String[][] signatures3) throws Exception {
+	protected void helperPassNoFatal(String[] methodNames1, String[][] signatures1, String[] methodNames2, String[][] signatures2,
+			String[] methodNames3, String[][] signatures3) throws Exception {
 		ICompilationUnit cu = createCUfromTestFile(getPackageP(), "A");
 		IType type = getType(cu, "A");
 		Set<IMethod> methodSet = new LinkedHashSet<>();
@@ -341,8 +337,7 @@ public abstract class JavaRefactoringTest extends RefactoringTest {
 		RefactoringStatus finalStatus = refactoring.checkFinalConditions(new NullProgressMonitor());
 		getLogger().info("Final status: " + finalStatus);
 
-		assertTrue("Precondition was supposed to pass.",
-				!initialStatus.hasFatalError() && !finalStatus.hasFatalError());
+		assertTrue("Precondition was supposed to pass.", !initialStatus.hasFatalError() && !finalStatus.hasFatalError());
 		performChange(refactoring, false);
 
 		String outputTestFileName = getOutputTestFileName("A");
