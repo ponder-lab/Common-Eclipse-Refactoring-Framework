@@ -12,9 +12,11 @@ Require-Bundle: org.eclipse.core.commands,
  org.eclipse.jface,
  org.eclipse.ui.workbench,
  org.eclipse.jdt.core,
- org.eclipse.osgi,
  org.eclipse.ltk.ui.refactoring,
  org.eclipse.ltk.core.refactoring;bundle-version="3.14.600"
 Import-Package: edu.cuny.citytech.refactoring.common.core,
- org.eclipse.core.runtime;version="[3.7.0,4.0.0)",
- org.eclipse.ltk.core.refactoring
+ org.eclipse.core.runtime;version="3.7.0",
+ org.eclipse.jdt.internal.ui,
+ org.eclipse.ltk.core.refactoring,
+ org.eclipse.osgi.service.debug;version="1.2.0",
+ org.eclipse.osgi.util;version="1.2.0"
