@@ -23,11 +23,24 @@ import org.eclipse.jdt.core.IMethod;
 import org.eclipse.jdt.core.IPackageFragment;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaModelException;
+import org.eclipse.jdt.ui.tests.refactoring.rules.RefactoringTestSetup;
 import org.eclipse.ltk.core.refactoring.Refactoring;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 
 @SuppressWarnings("restriction")
 public abstract class JavaRefactoringTest extends RefactoringTest {
+
+	public JavaRefactoringTest() {
+		super(new RefactoringTestSetup());
+	}
+
+	public JavaRefactoringTest(boolean replaceExpectedWithActual) {
+		super(replaceExpectedWithActual);
+	}
+
+	public JavaRefactoringTest(RefactoringTestSetup rts) {
+		super(rts);
+	}
 
 	private static boolean compiles(String source) throws IOException {
 		// Save source in .java file.
