@@ -41,19 +41,23 @@ public abstract class RefactoringProcessor extends edu.cuny.citytech.refactoring
 
 	protected CompilationUnit getCompilationUnit(ITypeRoot root, IProgressMonitor pm) {
 		CompilationUnit compilationUnit = this.getTypeRootToCompilationUnitMap().get(root);
+
 		if (compilationUnit == null) {
 			compilationUnit = RefactoringASTParser.parseWithASTProvider(root, true, pm);
 			this.getTypeRootToCompilationUnitMap().put(root, compilationUnit);
 		}
+
 		return compilationUnit;
 	}
 
 	protected CompilationUnitRewrite getCompilationUnitRewrite(ICompilationUnit unit, CompilationUnit root) {
 		CompilationUnitRewrite rewrite = this.getCompilationUnitToCompilationUnitRewriteMap().get(unit);
+
 		if (rewrite == null) {
 			rewrite = new CompilationUnitRewrite(unit, root);
 			this.getCompilationUnitToCompilationUnitRewriteMap().put(unit, rewrite);
 		}
+
 		return rewrite;
 	}
 
