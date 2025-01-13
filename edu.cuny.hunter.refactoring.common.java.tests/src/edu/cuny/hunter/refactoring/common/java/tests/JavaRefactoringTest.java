@@ -1,4 +1,4 @@
-package edu.cuny.citytech.refactoring.common.tests;
+package edu.cuny.hunter.refactoring.common.java.tests;
 
 import static org.junit.Assert.assertTrue;
 import static org.eclipse.core.runtime.Platform.getLog;
@@ -26,6 +26,8 @@ import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jdt.ui.tests.refactoring.rules.RefactoringTestSetup;
 import org.eclipse.ltk.core.refactoring.Refactoring;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
+
+import edu.cuny.citytech.refactoring.common.tests.RefactoringTest;
 
 @SuppressWarnings("restriction")
 public abstract class JavaRefactoringTest extends RefactoringTest {
