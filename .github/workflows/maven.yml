@@ -28,4 +28,4 @@ jobs:
     - name: Run Spotless
       run: ./mvnw spotless:check -B
     - name: Install with Maven
-      run: ./mvnw -U -Dlogging.config.file=\${maven.multiModuleProjectDirectory}/logging.ci.properties -DtrimStackTrace=true -Dtycho.showEclipseLog=true install -B -q
+      run: ./mvnw -U -Dlogging.config.file=\${maven.multiModuleProjectDirectory}/logging.ci.properties -DtrimStackTrace=true -Dtycho.showEclipseLog=true install -B
