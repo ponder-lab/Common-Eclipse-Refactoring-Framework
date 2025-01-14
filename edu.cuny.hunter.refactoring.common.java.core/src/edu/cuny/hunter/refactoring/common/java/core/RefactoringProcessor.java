@@ -34,6 +34,7 @@ public abstract class RefactoringProcessor extends edu.cuny.citytech.refactoring
 		this.settings = settings;
 	}
 
+	@Override
 	public void clearCaches() {
 		this.getTypeRootToCompilationUnitMap().clear();
 		this.getCompilationUnitToCompilationUnitRewriteMap().clear();
@@ -69,7 +70,7 @@ public abstract class RefactoringProcessor extends edu.cuny.citytech.refactoring
 		return this.typeRootToCompilationUnitMap;
 	}
 
-	protected void manageCompilationUnit(final TextEditBasedChangeManager manager, CompilationUnitRewrite rewrite,
+	protected static void manageCompilationUnit(final TextEditBasedChangeManager manager, CompilationUnitRewrite rewrite,
 			Optional<IProgressMonitor> monitor) throws CoreException {
 		monitor.ifPresent(m -> m.beginTask("Creating change ...", IProgressMonitor.UNKNOWN));
 		CompilationUnitChange change = rewrite.createChange(false, monitor.orElseGet(NullProgressMonitor::new));

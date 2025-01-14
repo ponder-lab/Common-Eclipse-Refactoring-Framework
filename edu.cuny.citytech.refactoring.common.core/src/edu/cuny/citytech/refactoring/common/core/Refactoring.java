@@ -14,7 +14,8 @@ import org.eclipse.ltk.core.refactoring.RefactoringStatus;
  */
 public abstract class Refactoring extends org.eclipse.ltk.core.refactoring.Refactoring {
 
-	public RefactoringStatus initialize(@SuppressWarnings("rawtypes") Map arguments) {
+	@SuppressWarnings("static-method")
+	public RefactoringStatus initialize(@SuppressWarnings({"rawtypes", "unused"}) Map arguments) {
 		return new RefactoringStatus();
 	}
 }

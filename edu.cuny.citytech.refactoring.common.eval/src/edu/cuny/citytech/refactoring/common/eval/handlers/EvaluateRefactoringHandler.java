@@ -18,6 +18,7 @@ public abstract class EvaluateRefactoringHandler extends AbstractHandler {
 
 	private static final String EVALUATION_PROPERTIES_FILE_NAME = "eval.properties";
 
+	@SuppressWarnings("resource")
 	protected static CSVPrinter createCSVPrinter(String fileName, String[] header) throws IOException {
 		return new CSVPrinter(new FileWriter(fileName, true),
 				CSVFormat.DEFAULT.builder().setIgnoreEmptyLines(false).setAllowMissingColumnNames(true).setHeader(header).build());
@@ -34,10 +35,11 @@ public abstract class EvaluateRefactoringHandler extends AbstractHandler {
 
 		if (evaluationFile != null && evaluationFile.exists())
 			return evaluationFile;
-		else
-			return findEvaluationPropertiesFile(directory.getParentFile());
+
+		return findEvaluationPropertiesFile(directory.getParentFile());
 	}
 
+	@SuppressWarnings("static-method")
 	protected String getEvaluationPropertiesFileName() {
 		return EVALUATION_PROPERTIES_FILE_NAME;
 	}

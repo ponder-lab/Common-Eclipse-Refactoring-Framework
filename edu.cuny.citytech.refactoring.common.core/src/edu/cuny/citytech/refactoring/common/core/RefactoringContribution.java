@@ -15,8 +15,7 @@ public abstract class RefactoringContribution extends org.eclipse.ltk.core.refac
 	public Map retrieveArgumentMap(org.eclipse.ltk.core.refactoring.RefactoringDescriptor descriptor) {
 		if (descriptor instanceof RefactoringDescriptor)
 			return ((RefactoringDescriptor) descriptor).getArguments();
-		else
-			return this.retrieveArgumentMap(descriptor);
-	}
 
+		return this.retrieveArgumentMap(descriptor);
+	}
 }

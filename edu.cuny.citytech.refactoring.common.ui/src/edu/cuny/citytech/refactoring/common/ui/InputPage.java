@@ -59,7 +59,7 @@ public abstract class InputPage extends UserInputWizardPage {
 			int selection;
 			try {
 				selection = Integer.parseInt(((Text) event.widget).getText());
-			} catch (NumberFormatException e) {
+			} catch (@SuppressWarnings("unused") NumberFormatException e) {
 				return;
 			}
 			InputPage.this.settings.put(key, selection);

@@ -21,7 +21,7 @@ public abstract class RefactoringWizard extends org.eclipse.ltk.ui.refactoring.R
 	}
 
 	public RefactoringWizard(Refactoring refactoring) {
-		super(refactoring, RefactoringWizard.DIALOG_BASED_USER_INTERFACE & RefactoringWizard.CHECK_INITIAL_CONDITIONS_ON_OPEN);
+		super(refactoring, DIALOG_BASED_USER_INTERFACE & CHECK_INITIAL_CONDITIONS_ON_OPEN);
 		this.setWindowTitle(refactoring.getName());
 	}
 }
