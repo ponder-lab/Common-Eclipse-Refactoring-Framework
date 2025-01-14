@@ -19,8 +19,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * @author <a href="mailto:khatchad@hunter.cuny.edu">Raffi
- *         Khatchadourian</a>
+ * @author <a href="mailto:khatchad@hunter.cuny.edu">Raffi Khatchadourian</a>
  */
 public abstract class InputPage extends UserInputWizardPage {
 
@@ -30,8 +29,7 @@ public abstract class InputPage extends UserInputWizardPage {
 		super(name);
 	}
 
-	protected void addBooleanButton(String text, final String key, final Consumer<Boolean> valueConsumer,
-			Composite result) {
+	protected void addBooleanButton(String text, final String key, final Consumer<Boolean> valueConsumer, Composite result) {
 		Button button = new Button(result, SWT.CHECK);
 		button.setText(text);
 		boolean value = this.settings.getBoolean(key);

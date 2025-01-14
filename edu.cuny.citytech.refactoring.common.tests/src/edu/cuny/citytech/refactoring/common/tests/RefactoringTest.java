@@ -38,8 +38,8 @@ public abstract class RefactoringTest extends GenericRefactoringTest {
 	}
 
 	/**
-	 * True if the expected output should be replaced with the actual output. Useful
-	 * to creating new or updated test data and false otherwise.
+	 * True if the expected output should be replaced with the actual output. Useful to creating new or updated test data and false
+	 * otherwise.
 	 */
 	private boolean replaceExpectedWithActual;
 
@@ -53,8 +53,7 @@ public abstract class RefactoringTest extends GenericRefactoringTest {
 	/**
 	 * Creates a new {@link RefactoringTest}.
 	 *
-	 * @param replaceExpectedWithActual True if the expected output should be
-	 *        replaced with the actual output.
+	 * @param replaceExpectedWithActual True if the expected output should be replaced with the actual output.
 	 */
 	public RefactoringTest(boolean replaceExpectedWithActual) {
 		this.replaceExpectedWithActual = replaceExpectedWithActual;
@@ -67,11 +66,9 @@ public abstract class RefactoringTest extends GenericRefactoringTest {
 
 	/*
 	 * (non-Javadoc)
-	 * @see
-	 * org.eclipse.jdt.ui.tests.refactoring.RefactoringTest#getFileContents(java
-	 * .lang.String) Had to override this method because, since this plug-in is a
-	 * fragment (at least I think that this is the reason), it doesn't have an
-	 * activator and the bundle is resolving to the eclipse refactoring test bundle.
+	 * @see org.eclipse.jdt.ui.tests.refactoring.RefactoringTest#getFileContents(java .lang.String) Had to override this method because,
+	 * since this plug-in is a fragment (at least I think that this is the reason), it doesn't have an activator and the bundle is resolving
+	 * to the eclipse refactoring test bundle.
 	 */
 	@Override
 	public String getFileContents(String fileName) throws IOException {
@@ -79,7 +76,6 @@ public abstract class RefactoringTest extends GenericRefactoringTest {
 		byte[] encoded = Files.readAllBytes(absolutePath);
 		return new String(encoded, Charset.defaultCharset());
 	}
-
 
 	private void setReplaceExpectedWithActualFromProperty() {
 		String replaceProperty = System.getenv(REPLACE_EXPECTED_WITH_ACTUAL_KEY);
@@ -90,6 +86,7 @@ public abstract class RefactoringTest extends GenericRefactoringTest {
 
 	/**
 	 * Returns the extension of the test file(s), e.g., .py, .java.
+	 *
 	 * @return The test filename extension.
 	 */
 	protected abstract String getTestFileExtension();

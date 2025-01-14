@@ -9,9 +9,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 
 /**
- * @author <a href="mailto:rkhatchadourian@citytech.cuny.edu">Raffi
- *         Khatchadourian</a>
- *
+ * @author <a href="mailto:rkhatchadourian@citytech.cuny.edu">Raffi Khatchadourian</a>
  */
 public abstract class RefactoringDescriptor extends org.eclipse.ltk.core.refactoring.RefactoringDescriptor {
 
@@ -28,8 +26,7 @@ public abstract class RefactoringDescriptor extends org.eclipse.ltk.core.refacto
 	protected abstract Refactoring createRefactoring();
 
 	@Override
-	public org.eclipse.ltk.core.refactoring.Refactoring createRefactoring(RefactoringStatus status)
-			throws CoreException {
+	public org.eclipse.ltk.core.refactoring.Refactoring createRefactoring(RefactoringStatus status) throws CoreException {
 		final Refactoring refactoring = this.createRefactoring();
 		status.merge(refactoring.initialize(this.fArguments));
 		return refactoring;

@@ -25,9 +25,9 @@
     <module>edu.cuny.hunter.refactoring.common.java.ui</module>
   </modules>
   <scm>
-    <url>http://github.com/ponder-lab/Common-Eclipse-Refactoring-Framework</url>
     <connection>scm:git:https://github.com/ponder-lab/Common-Eclipse-Refactoring-Framework.git</connection>
     <developerConnection>scm:git:https://github.com/ponder-lab/Common-Eclipse-Refactoring-Framework.git</developerConnection>
+    <url>http://github.com/ponder-lab/Common-Eclipse-Refactoring-Framework</url>
   </scm>
   <issueManagement>
     <system>GitHub</system>

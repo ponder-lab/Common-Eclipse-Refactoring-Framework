@@ -1,7 +1,7 @@
 package edu.cuny.hunter.refactoring.common.java.tests;
 
-import static org.junit.Assert.assertTrue;
 import static org.eclipse.core.runtime.Platform.getLog;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.io.IOException;

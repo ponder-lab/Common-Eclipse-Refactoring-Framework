@@ -9,7 +9,7 @@ import org.eclipse.ltk.core.refactoring.participants.SharableParticipants;
 
 /**
  * Language agnostic {@link RefactoringProcessor}.
- * 
+ *
  * @author <a href="mailto:rk1424@hunter.cuny.edu">Raffi Khatchadourian</a>
  */
 public abstract class RefactoringProcessor extends org.eclipse.ltk.core.refactoring.participants.RefactoringProcessor {
@@ -20,8 +20,7 @@ public abstract class RefactoringProcessor extends org.eclipse.ltk.core.refactor
 	private TimeCollector excludedTimeCollector = new TimeCollector();
 
 	@Override
-	public RefactoringStatus checkInitialConditions(IProgressMonitor pm)
-			throws CoreException, OperationCanceledException {
+	public RefactoringStatus checkInitialConditions(IProgressMonitor pm) throws CoreException, OperationCanceledException {
 		pm.beginTask(Messages.ClearingCaches, 2);
 
 		this.clearCaches();
