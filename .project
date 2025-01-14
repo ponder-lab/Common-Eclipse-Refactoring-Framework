@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>Common-Eclipse-Java-Refactoring-Framework</name>
+	<name>edu.cuny.hunter.refactoring.common</name>
 	<comment>Top-level project for a common Java refactoring framework.</comment>
 	<projects>
 	</projects>

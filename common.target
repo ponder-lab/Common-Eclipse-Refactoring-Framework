@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.8"?>
+<target name="Common Eclipse Refactoring Framework">
+	<locations>
+		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+			<repository location="http://download.eclipse.org/eclipse/updates/4.34"/>
+			<unit id="org.eclipse.equinox.p2.discovery.feature.source.feature.group" version="1.3.600.v20240918-1902"/>
+			<unit id="org.eclipse.pde.feature.group" version="3.16.100.v20241120-1800"/>
+			<unit id="org.eclipse.pde.source.feature.group" version="3.16.100.v20241120-1800"/>
+			<unit id="org.eclipse.rcp.feature.group" version="4.34.0.v20241120-1800"/>
+			<unit id="org.eclipse.rcp.source.feature.group" version="4.34.0.v20241120-1800"/>
+			<unit id="org.eclipse.test.feature.group" version="3.9.0.v20241107-0831"/>
+			<unit id="org.eclipse.jdt.feature.group" version="3.20.0.v20241120-1800"/>
+			<unit id="org.eclipse.jdt.source.feature.group" version="3.20.0.v20241120-1800"/>
+		</location>
+	</locations>
+	<environment>
+		<arch>x86_64</arch>
+		<os>linux</os>
+		<ws>gtk</ws>
+		<nl>en_US</nl>
+	</environment>
+	<launcherArgs>
+		<vmArgs>-Declipse.p2.max.threads=10 -Doomph.update.url=https://download.eclipse.org/oomph/updates/milestone/latest -Doomph.redirection.index.redirection=index:/-&gt;http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/ -Dosgi.requiredJavaVersion=21 -Dosgi.instance.area.default=@user.home/eclipse-workspace -Dosgi.dataAreaRequiresExplicitInit=true -Dorg.eclipse.swt.graphics.Resource.reportNonDisposed=true -Dsun.java.command=Eclipse -XX:+UseG1GC -XX:+UseStringDeduplication --add-modules=ALL-SYSTEM -Xms256m -Xmx2048m --add-modules=ALL-SYSTEM</vmArgs>
+	</launcherArgs>
+	<targetJRE path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-21"/>
+</target>
