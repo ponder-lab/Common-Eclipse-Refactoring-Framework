@@ -96,8 +96,8 @@ public abstract class JavaRefactoringTest extends RefactoringTest {
 
 		if (!unit.isStructureKnown())
 			throw new IllegalArgumentException(cuName + " has structural errors.");
-		else
-			return unit;
+
+		return unit;
 	}
 
 	protected ILog getLogger() {
@@ -108,7 +108,6 @@ public abstract class JavaRefactoringTest extends RefactoringTest {
 	 * Returns the refactoring to be tested.
 	 *
 	 * @param elements The {@link IJavaElement}s to refactor.
-	 * @param cu The compilation unit being tested. Can be null.
 	 * @return The refactoring to be tested.
 	 * @throws JavaModelException
 	 */
