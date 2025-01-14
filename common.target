@@ -12,6 +12,7 @@
 			<unit id="org.eclipse.test.feature.group" version="3.9.0.v20241107-0831"/>
 			<unit id="org.eclipse.jdt.feature.group" version="3.20.0.v20241120-1800"/>
 			<unit id="org.eclipse.jdt.source.feature.group" version="3.20.0.v20241120-1800"/>
+			<unit id="org.eclipse.sdk.tests.feature.group" version="4.34.0.v20241120-1800"/>
 		</location>
 	</locations>
 	<environment>
