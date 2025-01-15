@@ -11,9 +11,8 @@ authors:
   given-names: Md.
 - family-names: Friedman
   given-names: Oren
-title:ponder-lab/Common-Eclipse-Refactoring-Framework: v5.1.0
+title: "ponder-lab/Common-Eclipse-Refactoring-Framework: v5.1.0"
 version: v5.1.0
-identifiers:
-  - type: doi
-    value: 10.5281/zenodo.14655782
+doi: 10.5281/zenodo.14655782
 date-released: 2025-01-15
+url: http://github.com/ponder-lab/Common-Eclipse-Refactoring-Framework
