@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: Khatchadourian
+  given-names: Raffi
+  orcid: https://orcid.org/0000-0002-7930-0182
+- family-names: Tang
+  given-names: Yiming
+  orcid: https://orcid.org/0000-0003-2378-8972
+- family-names: Arefin
+  given-names: Md.
+- family-names: Friedman
+  given-names: Oren
+title:ponder-lab/Common-Eclipse-Refactoring-Framework: v5.1.0
+version: v5.1.0
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.14655782
+date-released: 2025-01-15
