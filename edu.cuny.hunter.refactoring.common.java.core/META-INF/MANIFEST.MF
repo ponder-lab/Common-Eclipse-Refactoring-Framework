@@ -13,7 +13,8 @@ Export-Package: edu.cuny.hunter.refactoring.common.java.core;version="3.9.0";
    org.eclipse.jdt.internal.corext.refactoring.structure"
 Import-Package: org.eclipse.core.runtime;version="3.7.0",
  org.eclipse.ltk.core.refactoring,
- org.eclipse.ltk.core.refactoring.participants
+ org.eclipse.ltk.core.refactoring.participants,
+ org.eclipse.osgi.util;version="[1.2.0,2.0.0)"
 Bundle-Vendor: %Bundle-Vendor
 Automatic-Module-Name: edu.cuny.hunter.refactoring.common.java.core
 Bundle-RequiredExecutionEnvironment: JavaSE-21

@@ -16,10 +16,9 @@ public abstract class RefactoringDescriptor extends org.eclipse.ltk.core.refacto
 	@SuppressWarnings("rawtypes")
 	protected final Map fArguments;
 
-	protected RefactoringDescriptor(String refactoringID, String project, String description, String comment,
+	protected RefactoringDescriptor(String refactoringID, String description, String comment,
 			@SuppressWarnings("rawtypes") Map arguments) {
-		super(refactoringID, project, description, comment, STRUCTURAL_CHANGE | MULTI_CHANGE);
-
+		super(refactoringID, null, description, comment, STRUCTURAL_CHANGE | MULTI_CHANGE);
 		this.fArguments = arguments;
 	}
 
