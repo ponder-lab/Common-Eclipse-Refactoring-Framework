@@ -82,8 +82,8 @@ public abstract class RefactoringProcessor extends edu.cuny.citytech.refactoring
 		return this.typeRootToCompilationUnitMap;
 	}
 
-	protected static void manageCompilationUnit(final TextEditBasedChangeManager manager,
-			CompilationUnitRewrite rewrite, IProgressMonitor monitor) throws CoreException {
+	protected static void manageCompilationUnit(final TextEditBasedChangeManager manager, CompilationUnitRewrite rewrite,
+			IProgressMonitor monitor) throws CoreException {
 		CompilationUnitChange change = rewrite.createChange(false, monitor);
 
 		if (change != null)
@@ -123,12 +123,10 @@ public abstract class RefactoringProcessor extends edu.cuny.citytech.refactoring
 
 			for (ICompilationUnit cu : units) {
 				CompilationUnit compilationUnit = this.getCompilationUnit(cu, saveProgress.split(1));
-				manageCompilationUnit(manager, this.getCompilationUnitRewrite(cu, compilationUnit),
-						saveProgress.split(1));
+				manageCompilationUnit(manager, this.getCompilationUnitRewrite(cu, compilationUnit), saveProgress.split(1));
 			}
 
-			return new DynamicValidationRefactoringChange(this.getDescriptor(), this.getProcessorName(),
-					manager.getAllChanges());
+			return new DynamicValidationRefactoringChange(this.getDescriptor(), this.getProcessorName(), manager.getAllChanges());
 		} finally {
 			this.clearCaches();
 		}
