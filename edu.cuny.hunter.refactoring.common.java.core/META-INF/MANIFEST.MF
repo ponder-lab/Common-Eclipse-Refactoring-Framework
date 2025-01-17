@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: edu.cuny.hunter.refactoring.common.java.core
-Bundle-Version: 5.1.0.qualifier
+Bundle-Version: 5.1.0
 Export-Package: edu.cuny.hunter.refactoring.common.java.core;version="3.9.0";
   uses:="org.eclipse.jdt.internal.corext.refactoring.util,
    org.eclipse.core.runtime,
