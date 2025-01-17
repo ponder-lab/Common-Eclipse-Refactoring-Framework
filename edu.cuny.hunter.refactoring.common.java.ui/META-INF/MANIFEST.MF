@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: edu.cuny.hunter.refactoring.common.java.ui
-Bundle-Version: 5.1.0
+Bundle-Version: 5.2.0.qualifier
 Export-Package: edu.cuny.hunter.refactoring.common.java.ui;version="3.9.0"
 Bundle-Vendor: %Bundle-Vendor
 Automatic-Module-Name: edu.cuny.hunter.refactoring.common.java.ui
