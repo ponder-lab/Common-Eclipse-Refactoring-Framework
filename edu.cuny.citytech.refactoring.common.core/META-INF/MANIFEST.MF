@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: edu.cuny.citytech.refactoring.common.core
-Bundle-Version: 5.2.0.qualifier
+Bundle-Version: 5.2.0
 Export-Package: edu.cuny.citytech.refactoring.common.core;version="3.9.0";
   uses:="org.eclipse.core.runtime,
    org.eclipse.osgi.util,
