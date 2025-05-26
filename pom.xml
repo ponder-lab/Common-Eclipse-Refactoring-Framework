@@ -38,7 +38,7 @@
     <url>https://github.com/ponder-lab/Common-Eclipse-Refactoring-Framework/actions/workflows/maven.yml</url>
   </ciManagement>
   <properties>
-    <tycho-version>4.0.12</tycho-version>
+    <tycho-version>4.0.13</tycho-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <jacoco-version>0.8.12</jacoco-version>
     <maven-checkstyle-plugin-version>3.6.0</maven-checkstyle-plugin-version>
