@@ -42,7 +42,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <jacoco-version>0.8.12</jacoco-version>
     <maven-checkstyle-plugin-version>3.6.0</maven-checkstyle-plugin-version>
-    <checkstyle-version>10.24.0</checkstyle-version>
+    <checkstyle-version>10.25.0</checkstyle-version>
     <junit-version>4.13.2</junit-version>
     <maven.compiler.source>21</maven.compiler.source>
     <maven.compiler.target>21</maven.compiler.target>
