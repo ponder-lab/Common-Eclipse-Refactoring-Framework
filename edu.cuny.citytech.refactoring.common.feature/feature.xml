@@ -2,7 +2,7 @@
 <feature
       id="edu.cuny.citytech.refactoring.common.feature"
       label="Common Refactoring Framework"
-      version="5.2.0"
+      version="5.2.0.qualifier"
       provider-name="City University of New York (CUNY) Hunter College"
       plugin="edu.cuny.citytech.refactoring.common.core">
 

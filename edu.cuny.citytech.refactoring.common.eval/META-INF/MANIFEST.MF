@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: edu.cuny.citytech.refactoring.common.eval
-Bundle-Version: 5.2.0
+Bundle-Version: 5.2.0.qualifier
 Automatic-Module-Name: edu.cuny.citytech.refactoring.common.eval
 Bundle-RequiredExecutionEnvironment: JavaSE-21
 Bundle-ClassPath: .,
