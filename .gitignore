@@ -19,3 +19,9 @@ tags
 [._]*.un~
 
 target/
+
+# Maven release plugin generated files
+release.properties
+pom.xml.releaseBackup
+pom.xml.next
+pom.xml.tag
