@@ -30,6 +30,14 @@ public abstract class InputPage extends UserInputWizardPage {
 	}
 
 	protected void addBooleanButton(String text, final String key, final Consumer<Boolean> valueConsumer, Composite result) {
+		this.addBooleanButton(text, key, false, valueConsumer, result);
+	}
+
+	protected void addBooleanButton(String text, final String key, boolean defaultValue, final Consumer<Boolean> valueConsumer,
+			Composite result) {
+		if (this.settings.get(key) == null)
+			this.settings.put(key, defaultValue);
+
 		Button button = new Button(result, SWT.CHECK);
 		button.setText(text);
 		boolean value = this.settings.getBoolean(key);
@@ -46,6 +54,13 @@ public abstract class InputPage extends UserInputWizardPage {
 	}
 
 	protected void addIntegerButton(String text, String key, Consumer<Integer> valueConsumer, Composite result) {
+		this.addIntegerButton(text, key, 0, valueConsumer, result);
+	}
+
+	protected void addIntegerButton(String text, String key, int defaultValue, Consumer<Integer> valueConsumer, Composite result) {
+		if (this.settings.get(key) == null)
+			this.settings.put(key, defaultValue);
+
 		Label label = new Label(result, SWT.HORIZONTAL);
 		label.setText(text);
 
@@ -90,9 +105,22 @@ public abstract class InputPage extends UserInputWizardPage {
 
 		compositeForIntegerButton.setLayout(layoutForIntegerButton);
 
+		this.addOptions(compositeForIntegerButton);
+
 		this.updateStatus();
 		Dialog.applyDialogFont(result);
 		PlatformUI.getWorkbench().getHelpSystem().setHelp(this.getControl(), this.getHelpContextID());
+	}
+
+	/**
+	 * A hook for subclasses to add option controls to the page. Called by {@link #createControl(Composite)} after the settings have been
+	 * loaded and the option composite has been created. The default implementation does nothing. Subclasses override this to call
+	 * {@link #addIntegerButton}/{@link #addBooleanButton} on the given composite.
+	 *
+	 * @param optionComposite The composite to which option controls should be added.
+	 */
+	protected void addOptions(Composite optionComposite) {
+		// Default no-op. Subclasses may override.
 	}
 
 	protected abstract String getDialoGSettingSectionTitle();
