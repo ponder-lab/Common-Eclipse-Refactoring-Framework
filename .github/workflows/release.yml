@@ -83,7 +83,8 @@ jobs:
 
       - name: Zip the p2 repo for the release asset
         run: |
-          (cd "$UPDATESITE/target/repository" && zip -qr "$GITHUB_WORKSPACE/p2-repo-${{ steps.v.outputs.rel }}.zip" .)
+          # write OUTSIDE the working tree so the release commit's `git add -A` can't capture it
+          (cd "$UPDATESITE/target/repository" && zip -qr "$RUNNER_TEMP/p2-repo-${{ steps.v.outputs.rel }}.zip" .)
 
       - name: Commit release version, tag, push, and create GitHub Release
         env:
@@ -97,25 +98,27 @@ jobs:
           git push origin "v${REL}"
           gh release create "v${REL}" \
             --title "v${REL}" --generate-notes \
-            "p2-repo-${REL}.zip#p2 update site (zip)"
+            "$RUNNER_TEMP/p2-repo-${REL}.zip#p2 update site (zip)"
 
       - name: Publish to gh-pages as a composite repository
         run: |
           REL="${{ steps.v.outputs.rel }}"
+          PAGES="$RUNNER_TEMP/pages"   # OUTSIDE the working tree
           git fetch origin gh-pages || true
-          rm -rf .pages && mkdir .pages
-          git worktree add -B gh-pages .pages "origin/gh-pages" 2>/dev/null \
-            || git worktree add --orphan -B gh-pages .pages
-          mkdir -p ".pages/releases/$REL"
-          rm -rf ".pages/releases/$REL"/*
-          cp -r "$UPDATESITE/target/repository/." ".pages/releases/$REL/"
-          tools/p2-composite.sh ".pages/releases" "Common Refactoring Framework" "$(date +%s000)"
+          rm -rf "$PAGES"
+          git worktree add -B gh-pages "$PAGES" "origin/gh-pages" 2>/dev/null \
+            || git worktree add --orphan -B gh-pages "$PAGES"
+          rm -rf "$PAGES/releases/$REL"
+          mkdir -p "$PAGES/releases/$REL"
+          cp -r "$UPDATESITE/target/repository/." "$PAGES/releases/$REL/"
+          bash "$GITHUB_WORKSPACE/tools/p2-composite.sh" "$PAGES/releases" "Common Refactoring Framework" "$(date +%s000)"
           # root index.html -> composite under /releases
-          printf '<meta http-equiv="refresh" content="0; url=releases/">\n' > .pages/index.html
-          ( cd .pages
+          printf '<meta http-equiv="refresh" content="0; url=releases/">\n' > "$PAGES/index.html"
+          ( cd "$PAGES"
             git add -A
             git commit -q -m "Publish v$REL to composite p2 site" || echo "nothing to commit"
             git push origin gh-pages )
+          git worktree remove --force "$PAGES"
 
       - name: Prepare next development version
         run: |
