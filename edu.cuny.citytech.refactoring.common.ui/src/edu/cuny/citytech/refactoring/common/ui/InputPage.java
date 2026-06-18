@@ -113,11 +113,7 @@ public abstract class InputPage extends UserInputWizardPage {
 	}
 
 	/**
-	 * A hook for subclasses to add option controls to the page. Called by
-	 * {@link #createControl(Composite)} after the settings have been loaded and the
-	 * option composite has been created. The default implementation does nothing.
-	 * Subclasses override this to call {@link #addIntegerButton} /
-	 * {@link #addBooleanButton} on the given composite.
+	 * A hook for subclasses to add option controls to the page. Called by {@link #createControl(Composite)} after the settings have been loaded and the option composite has been created. The default implementation does nothing. Subclasses override this to call {@link #addIntegerButton} / {@link #addBooleanButton} on the given composite.
 	 *
 	 * @param optionComposite The composite to which option controls should be added.
 	 */
