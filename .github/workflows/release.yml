@@ -85,15 +85,19 @@ jobs:
         run: |
           (cd "$UPDATESITE/target/repository" && zip -qr "$GITHUB_WORKSPACE/p2-repo-${{ steps.v.outputs.rel }}.zip" .)
 
-      - name: Tag and create GitHub Release
+      - name: Commit release version, tag, push, and create GitHub Release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          git tag -a "v${{ steps.v.outputs.rel }}" -m "Release v${{ steps.v.outputs.rel }}."
-          git push origin "v${{ steps.v.outputs.rel }}"
-          gh release create "v${{ steps.v.outputs.rel }}" \
-            --title "v${{ steps.v.outputs.rel }}" --generate-notes \
-            "p2-repo-${{ steps.v.outputs.rel }}.zip#p2 update site (zip)"
+          REL="${{ steps.v.outputs.rel }}"
+          git add -A
+          git commit -q -m "Release v${REL}."
+          git tag -a "v${REL}" -m "Release v${REL}."
+          git push origin master
+          git push origin "v${REL}"
+          gh release create "v${REL}" \
+            --title "v${REL}" --generate-notes \
+            "p2-repo-${REL}.zip#p2 update site (zip)"
 
       - name: Publish to gh-pages as a composite repository
         run: |
