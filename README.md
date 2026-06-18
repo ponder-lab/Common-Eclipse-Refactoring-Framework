@@ -6,6 +6,12 @@ A framework for making creating refactoring plugins in Eclipse a bit easier for 
 
 ## Update Site
 
+Install from the GitHub Pages site (recommended; a p2 composite repository exposing all released versions):
+
+https://ponder-lab.github.io/Common-Eclipse-Refactoring-Framework/releases/
+
+The legacy in-repo update site remains available at:
+
 https://raw.githubusercontent.com/ponder-lab/Common-Eclipse-Refactoring-Framework/master/edu.cuny.citytech.refactoring.common.updatesite
 
 ## Dependencies
