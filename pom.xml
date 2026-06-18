@@ -195,6 +195,7 @@
                   <exclude>**/plugin.xml</exclude>
                   <exclude>**/feature.xml</exclude>
                   <exclude>**/site.xml</exclude>
+                  <exclude>**/category.xml</exclude>
                   <exclude>**/*.target</exclude>
                   <exclude>**/pom.xml</exclude>
                   <exclude>**/dependency-reduced-pom.xml</exclude>
