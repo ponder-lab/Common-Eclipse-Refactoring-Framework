@@ -163,6 +163,10 @@
                   <exclude>**/v1_astmanager/</exclude>
                   <exclude>mvnw.cmd</exclude>
                   <exclude>**/*.target</exclude>
+                  <exclude>**/release.properties</exclude>
+                  <exclude>**/*.releaseBackup</exclude>
+                  <exclude>**/pom.xml.next</exclude>
+                  <exclude>**/pom.xml.tag</exclude>
                 </excludes>
                 <trimTrailingWhitespace/>
                 <endWithNewline/>
