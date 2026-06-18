@@ -1,0 +1,127 @@
+name: Release (CI-published p2 site)
+
+# PROTOTYPE of a CI-published release flow that replaces the in-repo,
+# cumulative, hand-assembled P2 update site (see docs/RELEASING.md).
+#
+# What it does, on manual dispatch:
+#   1. set the release version, build + test (Tycho), producing a complete
+#      per-version p2 repo at .../updatesite/target/repository
+#      (works because category.xml was added; no GUI / p2 publisher needed)
+#   2. tag vX.Y.Z and create a GitHub Release with the p2 repo zipped as an asset
+#   3. publish that repo to the gh-pages branch under /releases/X.Y.Z and
+#      regenerate the p2 *composite* indexes so the single Pages URL exposes
+#      every released version
+#   4. bump master to the next development version
+#
+# No binaries are ever committed to master. The gh-pages branch holds the
+# published site (an orphan branch independent of source history).
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_version:
+        description: "Release version (X.Y.Z)"
+        required: true
+      next_version:
+        description: "Next dev version (X.Y.Z, -SNAPSHOT added). Blank = bump minor."
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+env:
+  UPDATESITE: edu.cuny.citytech.refactoring.common.updatesite
+  PAGES_URL: https://ponder-lab.github.io/Common-Eclipse-Refactoring-Framework
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+          fetch-depth: 0
+          submodules: recursive
+
+      - uses: actions/setup-java@v4
+        with:
+          java-version: "21"
+          distribution: temurin
+          cache: maven
+
+      - name: Configure git
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Compute versions
+        id: v
+        run: |
+          REL="${{ github.event.inputs.release_version }}"
+          NEXT="${{ github.event.inputs.next_version }}"
+          [[ "$REL" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "bad release version"; exit 1; }
+          if [[ -z "$NEXT" ]]; then IFS=. read -r MA MI PA <<<"$REL"; NEXT="${MA}.$((MI+1)).0"; fi
+          echo "rel=$REL"            >> "$GITHUB_OUTPUT"
+          echo "next=${NEXT}-SNAPSHOT" >> "$GITHUB_OUTPUT"
+
+      - name: Set release version
+        run: ./mvnw -B -q org.eclipse.tycho:tycho-versions-plugin:set-version -DnewVersion=${{ steps.v.outputs.rel }}
+
+      - name: Build, test, verify formatting
+        run: |
+          ./mvnw -B spotless:check
+          ./mvnw -B -U -DtrimStackTrace=true clean install
+
+      - name: Sanity-check the built p2 repo is non-empty
+        run: |
+          test -f "$UPDATESITE/target/repository/content.jar"
+          test -n "$(find "$UPDATESITE/target/repository/features" -name '*.jar')"
+
+      - name: Zip the p2 repo for the release asset
+        run: |
+          (cd "$UPDATESITE/target/repository" && zip -qr "$GITHUB_WORKSPACE/p2-repo-${{ steps.v.outputs.rel }}.zip" .)
+
+      - name: Tag and create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git tag -a "v${{ steps.v.outputs.rel }}" -m "Release v${{ steps.v.outputs.rel }}."
+          git push origin "v${{ steps.v.outputs.rel }}"
+          gh release create "v${{ steps.v.outputs.rel }}" \
+            --title "v${{ steps.v.outputs.rel }}" --generate-notes \
+            "p2-repo-${{ steps.v.outputs.rel }}.zip#p2 update site (zip)"
+
+      - name: Publish to gh-pages as a composite repository
+        run: |
+          REL="${{ steps.v.outputs.rel }}"
+          git fetch origin gh-pages || true
+          rm -rf .pages && mkdir .pages
+          git worktree add -B gh-pages .pages "origin/gh-pages" 2>/dev/null \
+            || git worktree add --orphan -B gh-pages .pages
+          mkdir -p ".pages/releases/$REL"
+          rm -rf ".pages/releases/$REL"/*
+          cp -r "$UPDATESITE/target/repository/." ".pages/releases/$REL/"
+          tools/p2-composite.sh ".pages/releases" "Common Refactoring Framework" "$(date +%s000)"
+          # root index.html -> composite under /releases
+          printf '<meta http-equiv="refresh" content="0; url=releases/">\n' > .pages/index.html
+          ( cd .pages
+            git add -A
+            git commit -q -m "Publish v$REL to composite p2 site" || echo "nothing to commit"
+            git push origin gh-pages )
+
+      - name: Prepare next development version
+        run: |
+          ./mvnw -B -q org.eclipse.tycho:tycho-versions-plugin:set-version -DnewVersion=${{ steps.v.outputs.next }}
+          git add -A
+          git commit -q -m "Prepare next development version."
+          git push origin master
+
+      - name: Summary
+        run: |
+          echo "Released v${{ steps.v.outputs.rel }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "Update site: ${PAGES_URL}/releases/" >> "$GITHUB_STEP_SUMMARY"
+          echo "master now on ${{ steps.v.outputs.next }}" >> "$GITHUB_STEP_SUMMARY"
