@@ -1,48 +1,42 @@
 # Releasing
 
-This repo has two release mechanisms. The **current** one is in-repo and manual/scripted; the **prototype** one is CI-published. This document compares them so we can decide whether to migrate.
+Releases are built in CI and published to GitHub Pages as a p2 composite repository. The older in-repo committed update site is **legacy** and is being retired.
 
-## Current Model (`release.sh`, Committed Update Site)
+## How to Cut a Release
 
-The P2 update site lives **inside the source repo** (`edu.cuny.citytech.refactoring.common.updatesite/`) and is **cumulative**: every release commits its feature + plugin jars and rewrites the shared `artifacts.jar`/`content.jar` index, served from `raw.githubusercontent.com/.../updatesite`.
+Run the **Release** workflow: GitHub → Actions → "Release (CI-published p2 site)" → Run workflow, and enter the release version (e.g. `5.4.0`). It will set the version, build and test, tag `vX.Y.Z`, create a GitHub Release (with the p2 repo attached as a zip), publish the per-version repo to `gh-pages`, regenerate the composite index, and bump `master` to the next development version. No binaries are committed to `master`.
 
-`./release.sh X.Y.Z` automates it: `set-version`→build→stage jars→bump `site.xml`→regenerate the cumulative index with the Eclipse p2 publisher (`-append`)→commit/tag/push→GitHub Release→next-dev bump.
-
-Trade-offs:
-
-- ➖ Binaries accumulate in `master` history **forever**—every release grows every clone, unrecoverably.
-- ➖ Requires a local Eclipse install with the p2 publisher apps; the index is hand-assembled (`-append`), which is fragile (category-id qualification, easy to leak a local path).
-- ➖ `raw.githubusercontent.com` is not a real artifact host (no CDN/SLA).
-- ➕ Zero infra; everything is in one repo; offline-capable.
-
-## Prototype Model (This Branch: CI→GitHub Pages Composite Repo)
-
-The update site is **built in CI and published to the `gh-pages` branch**, never committed to `master`. Each release publishes its **own** small p2 repo under `releases/X.Y.Z/`, and a p2 **composite repository** at the root ties them all together—so one stable URL exposes every version without a monolithic index.
-
-Stable update-site URL (composite):
+Update-site URL (composite, exposes every released version):
 
 ```
 https://ponder-lab.github.io/Common-Eclipse-Refactoring-Framework/releases/
 ```
 
-Pieces added on this branch:
+## How It Works (CI→GitHub Pages Composite Repo)
 
-- **`edu.cuny.citytech.refactoring.common.updatesite/category.xml`**—the key fix. Tycho's `eclipse-repository` build was producing an *empty* repo because the module only had the legacy `site.xml`. With a `category.xml`, a plain `./mvnw clean install` produces a **complete** per-version p2 repo at `updatesite/target/repository` (feature + 8 bundles + category)—no GUI, no p2 publisher, no `-append`.
-- **`tools/p2-composite.sh`**—regenerates `compositeContent.xml`/`compositeArtifacts.xml` from the per-version child dirs. (Verified: the Eclipse p2 director loads the composite and resolves the feature.)
-- **`.github/workflows/release.yml`**—manual-dispatch pipeline: set-version→build/test→tag + GitHub Release (with the p2 repo zipped as an asset)→publish to `gh-pages` as a composite→next-dev bump.
+The update site is built in CI and published to the `gh-pages` branch, never committed to `master`. Each release publishes its **own** small p2 repo under `releases/X.Y.Z/`, and a p2 **composite repository** at the root ties them all together—so one stable URL exposes every version without a monolithic index.
 
-Trade-offs:
+Pieces:
 
-- ➕ **No binaries in `master`**—source history stays lean. The published bits live on the orphan `gh-pages` branch, independent of source clones.
-- ➕ One CLI build produces the repo; no GUI, no hand-assembled index.
-- ➕ Composite layout scales to any number of versions; each release is an isolated, immutable child—no risk of corrupting a shared index.
-- ➕ Released p2 repo is also attached to the GitHub Release as a zip.
-- ➖ Relies on GitHub Pages + Actions (infra, perms).
-- ➖ `gh-pages` still accumulates binaries, but on a branch you can prune/squash without touching source history.
+- **`edu.cuny.citytech.refactoring.common.updatesite/category.xml`**—makes Tycho's `eclipse-repository` build produce a **complete** per-version p2 repo at `updatesite/target/repository` (feature + 8 bundles + category); a plain `./mvnw clean install` is enough (no GUI, no p2 publisher, no `-append`).
+- **`tools/p2-composite.sh`**—regenerates `compositeContent.xml`/`compositeArtifacts.xml` from the per-version child dirs.
+- **`.github/workflows/release.yml`**—the manual-dispatch pipeline described above.
 
-## Migration Notes (Not Done on This Branch)
+Properties:
 
-1. Enable GitHub Pages for the `gh-pages` branch.
-2. Update the README's update-site URL to the Pages composite URL.
-3. Optionally seed `gh-pages` with the existing historical versions (one child dir per past release) so nothing 404s, then **drop the committed `updatesite/` binaries** from `master` going forward (and, if desired, purge them from history).
-4. Retire `release.sh` (or keep as an offline fallback).
+- No binaries in `master`—source history stays lean. The published bits live on the orphan `gh-pages` branch, independent of source clones.
+- One CLI build produces the repo; no GUI, no hand-assembled index.
+- The composite layout scales to any number of versions; each release is an isolated, immutable child.
+- The shipped repo always matches what the build compiled against (no dep-vs-site drift).
+
+## Legacy Model (`release.sh`, Committed Update Site)
+
+Before the CI flow, the p2 update site lived **inside the source repo** (`edu.cuny.citytech.refactoring.common.updatesite/`) and was **cumulative**: every release committed its feature + plugin jars and rewrote the shared `artifacts.jar`/`content.jar` index, served from `raw.githubusercontent.com/.../updatesite`. `./release.sh X.Y.Z` automated that flow.
+
+It is retained only as an offline fallback. Drawbacks that motivated the move: binaries accumulate in `master` history forever (every release grows every clone); it needs a local Eclipse install with the p2 publisher and a fragile hand-assembled (`-append`) index; and `raw.githubusercontent.com` is not a real artifact host.
+
+## Remaining Cleanup
+
+1. Drop the committed `updatesite/` binaries from `master` (history is preserved on `gh-pages` under `releases/archive/`).
+2. Retire `release.sh` (or keep as an offline fallback).
+3. Once confident, remove the legacy `raw.githubusercontent` URL from the README.

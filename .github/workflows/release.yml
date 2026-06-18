@@ -1,7 +1,7 @@
 name: Release (CI-published p2 site)
 
-# PROTOTYPE of a CI-published release flow that replaces the in-repo,
-# cumulative, hand-assembled P2 update site (see docs/RELEASING.md).
+# CI-published release flow that replaces the legacy in-repo, cumulative,
+# hand-assembled P2 update site (see docs/RELEASING.md).
 #
 # What it does, on manual dispatch:
 #   1. set the release version, build + test (Tycho), producing a complete
