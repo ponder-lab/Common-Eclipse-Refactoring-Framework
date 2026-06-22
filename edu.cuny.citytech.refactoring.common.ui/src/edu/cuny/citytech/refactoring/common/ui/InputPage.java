@@ -85,7 +85,9 @@ public abstract class InputPage extends UserInputWizardPage {
 	 * Adds a {@link Spinner} control for a small bounded positive integer setting. Like
 	 * {@link #addIntegerButton(String, String, int, Consumer, Composite)}, this seeds {@code defaultValue} into the dialog settings if
 	 * {@code key} is absent. Unlike the free-text {@link Text}-backed integer button, the spinner offers up/down steppers, enforces
-	 * integer-only input, and pins a {@code minimum}, eliminating the silent parse-failure path.
+	 * integer-only input, and pins a {@code minimum}, eliminating the silent parse-failure path. The maximum is left unbounded
+	 * ({@link Integer#MAX_VALUE}) rather than the SWT default of {@code 100}, so stored or default values above {@code 100} are not
+	 * silently clamped.
 	 *
 	 * @param text The label for the control.
 	 * @param key The dialog settings key under which the value is stored.
@@ -103,6 +105,8 @@ public abstract class InputPage extends UserInputWizardPage {
 		label.setText(text);
 
 		Spinner spinner = new Spinner(result, SWT.BORDER);
+		// Raise the cap off SWT's default of 100 before setting the minimum so neither bound silently clamps the stored value.
+		spinner.setMaximum(Integer.MAX_VALUE);
 		spinner.setMinimum(minimum);
 		spinner.setSelection(this.settings.getInt(key));
 		// Read back the (possibly minimum-clamped) selection so the consumer and settings stay consistent with the control.
