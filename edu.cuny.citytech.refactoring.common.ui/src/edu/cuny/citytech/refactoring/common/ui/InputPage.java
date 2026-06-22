@@ -15,6 +15,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
 
@@ -75,6 +76,41 @@ public abstract class InputPage extends UserInputWizardPage {
 			} catch (@SuppressWarnings("unused") NumberFormatException e) {
 				return;
 			}
+			InputPage.this.settings.put(key, selection);
+			valueConsumer.accept(selection);
+		});
+	}
+
+	/**
+	 * Adds a {@link Spinner} control for a small bounded positive integer setting. Like
+	 * {@link #addIntegerButton(String, String, int, Consumer, Composite)}, this seeds {@code defaultValue} into the dialog settings if
+	 * {@code key} is absent. Unlike the free-text {@link Text}-backed integer button, the spinner offers up/down steppers, enforces
+	 * integer-only input, and pins a {@code minimum}, eliminating the silent parse-failure path.
+	 *
+	 * @param text The label for the control.
+	 * @param key The dialog settings key under which the value is stored.
+	 * @param defaultValue The value seeded into the settings when {@code key} is absent.
+	 * @param minimum The smallest value the spinner allows.
+	 * @param valueConsumer Receives the initial value and each subsequent change.
+	 * @param result The composite to which the control is added.
+	 */
+	protected void addSpinnerButton(String text, String key, int defaultValue, int minimum, Consumer<Integer> valueConsumer,
+			Composite result) {
+		if (this.settings.get(key) == null)
+			this.settings.put(key, defaultValue);
+
+		Label label = new Label(result, SWT.HORIZONTAL);
+		label.setText(text);
+
+		Spinner spinner = new Spinner(result, SWT.BORDER);
+		spinner.setMinimum(minimum);
+		spinner.setSelection(this.settings.getInt(key));
+		// Read back the (possibly minimum-clamped) selection so the consumer and settings stay consistent with the control.
+		int value = spinner.getSelection();
+		this.settings.put(key, value);
+		valueConsumer.accept(value);
+		spinner.addModifyListener(event -> {
+			int selection = ((Spinner) event.widget).getSelection();
 			InputPage.this.settings.put(key, selection);
 			valueConsumer.accept(selection);
 		});
