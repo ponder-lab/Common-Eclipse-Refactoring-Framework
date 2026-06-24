@@ -2,11 +2,12 @@
 <?compositeArtifactRepository version='1.0.0'?>
 <repository name='Common Refactoring Framework' type='org.eclipse.equinox.internal.p2.artifact.repository.CompositeArtifactRepository' version='1.0.0'>
   <properties size='1'>
-    <property name='p2.timestamp' value='1782140654000'/>
+    <property name='p2.timestamp' value='1782342208000'/>
   </properties>
-  <children size='3'>
+  <children size='4'>
     <child location='5.4.0'/>
     <child location='5.5.0'/>
+    <child location='5.6.0'/>
     <child location='archive'/>
   </children>
 </repository>
